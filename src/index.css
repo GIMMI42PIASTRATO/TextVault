@@ -3,6 +3,7 @@
 :root {
 	--text: #e8e8e8;
 	--background: #070607;
+	--background2: #2c292c;
 	--primary: #bbb2bc;
 	--secondary: #5a4b5c;
 	--accent: #a189a4;
@@ -17,5 +18,6 @@ body {
 }
 
 #root {
+	display: flex;
 	height: 100%;
 }

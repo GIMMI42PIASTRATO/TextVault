@@ -1,4 +1,5 @@
-import style from "./linkComponent.module.scss";
+import Link from "next/link";
+import style from "./linkComponent.module.css";
 
 interface LinkComponentProps {
 	href: string;
@@ -12,8 +13,8 @@ export default function LinkComponent({
 	className,
 }: LinkComponentProps) {
 	return (
-		<a href={className} className={`${style.link}`}>
+		<Link href={href} className={`${style.link} ${style[className]}`}>
 			{children}
-		</a>
+		</Link>
 	);
 }

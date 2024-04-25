@@ -3,12 +3,13 @@
 
 import { libreBaskerville } from "@/utils/fonts";
 import LinkComponent from "@/components/Link/LinkComponent";
+import ImageComponent from "./components/ImageComponent/ImageComponent";
 import Link from "next/link";
 
 export default function Home() {
 	return (
 		<>
-			<section className="flex justify-center mx-auto 2xl:max-w-7xl xl:max-w-6xl lg:max-w-4xl md:max-w-3xl xs:max-w-md">
+			<section className="flex flex-col justify-center mx-auto 2xl:max-w-7xl xl:max-w-6xl lg:max-w-4xl md:max-w-3xl xs:max-w-md">
 				<div className="flex flex-col items-center">
 					<h1
 						className={`${libreBaskerville.className} text-center max-w-6xl text-4xl font-normal mb-10 lg:text-6xl`}
@@ -34,6 +35,9 @@ export default function Home() {
 							</Link>
 						</span>
 					</p>
+				</div>
+				<div className="pt-12 md:pt-20">
+					<ImageComponent src="/home-widgets.webp" alt="App image" />
 				</div>
 			</section>
 		</>

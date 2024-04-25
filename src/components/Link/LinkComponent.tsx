@@ -1,5 +1,6 @@
 import Link from "next/link";
 import style from "./linkComponent.module.css";
+import { inter } from "@/utils/fonts";
 
 interface LinkComponentProps {
 	href: string;
@@ -13,7 +14,10 @@ export default function LinkComponent({
 	className,
 }: LinkComponentProps) {
 	return (
-		<Link href={href} className={`${style.link} ${style[className]}`}>
+		<Link
+			href={href}
+			className={`${inter.className} ${style.link} ${style[className]}`}
+		>
 			{children}
 		</Link>
 	);

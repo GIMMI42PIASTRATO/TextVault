@@ -1,0 +1,18 @@
+.container {
+  	display: flex;
+  	justify-content: space-between;
+  	align-items: center;
+  	margin: 0 auto;
+	height: 5rem;
+}
+
+.log_img {
+    width: 12rem;
+    height: auto;
+}
+
+@media (min-width: 90rem) {
+	.container {
+		max-width: 82.5rem;
+	}
+}

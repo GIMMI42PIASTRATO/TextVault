@@ -2,6 +2,7 @@
 // Here is where the user will land when they visit the site
 
 import { libreBaskerville } from "@/utils/fonts";
+import LinkComponent from "@/components/Link/LinkComponent";
 
 export default function Home() {
 	return (
@@ -19,6 +20,11 @@ export default function Home() {
 						stay safe while our intuitive platform ensures
 						hassle-free sharing for effective collaboration.
 					</p>
+				</div>
+				<div className="flex flex-col items-center mt-10">
+					<LinkComponent href="/login" className="bg-blue-500">
+						Get Started
+					</LinkComponent>
 				</div>
 			</section>
 		</>

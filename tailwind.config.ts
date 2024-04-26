@@ -22,6 +22,12 @@ const config: Config = {
 				sans: ["var(--font-inter)"],
 				serif: ["var(--font-libre-baskerville)"],
 			},
+			colors: {
+				"figma-green": "#00a82d",
+				"figma-orange": "#fe7900",
+				"figma-blue": "#6378fe",
+				"figma-yellow": "#fed919",
+			},
 		},
 	},
 	plugins: [],

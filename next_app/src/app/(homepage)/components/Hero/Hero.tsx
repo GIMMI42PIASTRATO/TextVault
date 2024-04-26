@@ -17,7 +17,7 @@ export default function Hero() {
 					safe while our intuitive platform ensures hassle-free
 					sharing for effective collaboration.
 				</p>
-				<LinkComponent href="/register" className="big_link">
+				<LinkComponent href="/auth/register" className="big_link">
 					Get Started
 				</LinkComponent>
 				<p className="text-base font-normal text-center mt-8 xl:text-lg">

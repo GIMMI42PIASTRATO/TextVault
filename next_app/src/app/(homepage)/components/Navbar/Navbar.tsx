@@ -14,7 +14,7 @@ export default function Navbar() {
 					/>
 				</Link>
 			</div>
-			<LinkComponent href="/login" className="">
+			<LinkComponent href="/auth/login" className="">
 				Login
 			</LinkComponent>
 		</nav>

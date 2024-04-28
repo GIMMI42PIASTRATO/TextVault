@@ -15,6 +15,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import FormHeader from "./FormHeader";
 
 const formSchema = z.object({
 	email: z.string().min(2, {
@@ -42,7 +43,8 @@ export function AuthForm() {
 	}
 
 	return (
-		<div className="bg-white px-24 py-16 max-w-5xl">
+		<div className="bg-white px-24 py-16 w-[512px] shadow-xl">
+			<FormHeader />
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
@@ -75,7 +77,12 @@ export function AuthForm() {
 							</FormItem>
 						)}
 					/>
-					<Button type="submit">Submit</Button>
+					<Button
+						type="submit"
+						className="w-full bg-[--primary-color] hover:bg-[--primary-hover] text-white"
+					>
+						Continue
+					</Button>
 				</form>
 			</Form>
 		</div>

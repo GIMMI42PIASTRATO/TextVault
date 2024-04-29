@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { inter } from "@/utils/fonts";
-import style from "./layout.module.css";
+import style from "./style/layout.module.css";
 import "../globals.css";
 
 export const metadata: Metadata = {

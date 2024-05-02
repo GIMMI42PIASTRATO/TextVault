@@ -18,36 +18,48 @@ import { Input } from "@/components/ui/input";
 import FormHeader from "./FormHeader";
 import { useState } from "react";
 
-const formSchema = z
-	.object({
-		username: z.string().min(3).max(100),
+import pb from "@/lib/pocketbase";
 
-		email: z.string().email({
-			message: "Invalid email address.",
+const formSchema = z.object({
+	// username: z.string().min(3).max(100),
+
+	email: z.string().email({
+		message: "Invalid email address.",
+	}),
+
+	// password must be at least 8 characters long and contain at least one number and one special character
+	password: z
+		.string()
+		.min(8)
+		.max(100)
+		.regex(/^(?=.*[0-9])(?=.*[^a-zA-Z0-9\s]).{8,}$/, {
+			message:
+				"Password must contain at least one number and one special character.",
 		}),
+	// confirmPassword: z.string(),
+});
 
-		// password must be at least 8 characters long and contain at least one number and one special character
-		password: z
-			.string()
-			.min(8)
-			.max(100)
-			.regex(/^(?=.*[0-9])(?=.*[^a-zA-Z0-9\s]).{8,}$/, {
-				message:
-					"Password must contain at least one number and one special character.",
-			}),
-		confirmPassword: z.string(),
-		// .refine((confPassword) => confPassword === , { message: "Erorr" }),
-	})
-	.superRefine((formData, ctx) => {
-		if (formData.password !== formData.confirmPassword) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Password doesn't match",
+export function AuthForm({ isRegister }: { isRegister: boolean }) {
+	console.log(isRegister);
+
+	if (isRegister) {
+		formSchema
+			.extend({
+				username: z.string().min(3).max(100),
+				confirmPassword: z.string().refine((data) => {
+					return data === formSchema.password;
+				}),
+			})
+			.superRefine((formData, ctx) => {
+				if (formData.password !== formData.confirmPassword) {
+					ctx.addIssue({
+						code: "custom",
+						message: "Password doesn't match",
+					});
+				}
 			});
-		}
-	});
+	}
 
-export function AuthForm({ isRegister = false }) {
 	// 1. Define your form.
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -64,13 +76,28 @@ export function AuthForm({ isRegister = false }) {
 	} = form;
 
 	// 2. Define a submit handler.
-	function onSubmit(values: z.infer<typeof formSchema>) {
-		// Do something with the form values.
-		// ✅ This will be type-safe and validated.
-		console.log(values);
-	}
+	async function onSubmit(values: z.infer<typeof formSchema>) {
+		console.log("I'm here");
 
-	const [value, setValue] = useState("");
+		if (isRegister) {
+			const user = {
+				name: values.username,
+				email: values.email,
+				password: values.password,
+				passwordConfirm: values.confirmPassword,
+			};
+
+			const record = await pb.collection("users").create(user);
+			console.log(record);
+		} else {
+			console.log(values);
+			const authData = await pb
+				.collection("users")
+				.authWithPassword(values.email, values.password);
+
+			console.log(authData);
+		}
+	}
 
 	return (
 		<div className="bg-white px-24 py-16 w-[512px] shadow-xl">
@@ -150,6 +177,7 @@ export function AuthForm({ isRegister = false }) {
 							)}
 						/>
 					)}
+					{/* //TODO remove the button if the user who try to acces doesn't exist */}
 					<Button
 						type="submit"
 						className="w-full bg-[--primary-color] hover:bg-[--primary-hover] text-white"

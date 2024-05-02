@@ -4,7 +4,7 @@ import style from "../style/login.module.css";
 export default function Login() {
 	return (
 		<div className={style.container}>
-			<AuthForm />
+			<AuthForm isRegister={false} />
 		</div>
 	);
 }

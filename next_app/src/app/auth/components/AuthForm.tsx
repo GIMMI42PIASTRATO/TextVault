@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormData, LoginFormData, LoginSchema, UserSchema } from "../types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -95,6 +96,7 @@ export function LoginForm() {
 		resolver: zodResolver(LoginSchema),
 	});
 	const router = useRouter();
+	const [loginError, setLoginError] = useState<string>("");
 
 	const onSubmit = async (data: LoginFormData) => {
 		try {
@@ -105,6 +107,7 @@ export function LoginForm() {
 			router.push("/dashboard");
 		} catch (error) {
 			console.log(error);
+			setLoginError("Email or password are incorrect");
 		}
 	};
 
@@ -132,6 +135,11 @@ export function LoginForm() {
 				>
 					Continue
 				</Button>
+				{loginError && (
+					<p className="mt-1 text-sm font-semibold text-red-500 text-center">
+						{loginError}
+					</p>
+				)}
 			</form>
 		</div>
 	);

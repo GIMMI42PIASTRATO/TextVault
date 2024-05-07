@@ -24,7 +24,7 @@ export default function Hero() {
 					Already have an account?{" "}
 					<span>
 						<Link
-							href="/login"
+							href="/auth/login"
 							className="text-nowrap font-medium underline underline-offset-4 hover:no-underline hover:text-[--tertiary-color] transition-all duration-200 ease-in-out"
 						>
 							Log in now

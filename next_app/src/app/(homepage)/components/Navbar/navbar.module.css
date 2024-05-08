@@ -3,12 +3,39 @@
   	justify-content: space-between;
   	align-items: center;
   	margin: 0 auto;
+	padding: 0 1.25rem;
 	height: 5rem;
+	background-color: var(--background-color);
 }
 
 .log_img {
     width: 12rem;
     height: auto;
+}
+
+@media (min-width: 30rem) {
+	.container {
+		padding: 0 0;
+		max-width: 27.5rem;
+	}
+}
+
+@media (min-width: 48rem) {
+	.container {
+		max-width: 45rem;
+	}
+}
+
+@media (min-width: 64rem) {
+	.container {
+		max-width: 60rem;
+	}
+}
+
+@media (min-width: 80rem) {
+	.container {
+		max-width: 71.25rem;
+	}
 }
 
 @media (min-width: 90rem) {

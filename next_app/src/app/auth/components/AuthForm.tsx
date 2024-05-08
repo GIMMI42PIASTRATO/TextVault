@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormData, LoginFormData, LoginSchema, UserSchema } from "../types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,10 +9,13 @@ import FormHeader from "./FormHeader";
 import FormFields from "./FormFields";
 import InputText from "@/components/InputText/InputText";
 
-import pb from "@/lib/pocketbase";
 import { useRouter } from "next/navigation";
+import useLogin from "../hooks/useLogin";
+import useRegister from "../hooks/useRegister";
 
 export function RegisterForm() {
+	const { createRecord, isLoading } = useRegister();
+
 	const {
 		register,
 		handleSubmit,
@@ -23,20 +25,14 @@ export function RegisterForm() {
 	const router = useRouter();
 
 	const onSubmit = async (data: FormData) => {
-		const newUser = {
+		await createRecord({
 			email: data.email,
 			name: data.username,
 			password: data.password,
 			passwordConfirm: data.confirmpassword,
-		};
-
-		try {
-			const record = await pb.collection("users").create(newUser);
-			console.log(record);
-			router.push("/auth/login");
-		} catch (error) {
-			setError("email", { message: "Email already exists" });
-		}
+			setError,
+		});
+		router.push("/dashboard");
 	};
 
 	return (
@@ -81,6 +77,11 @@ export function RegisterForm() {
 				>
 					Continue
 				</Button>
+				{isLoading && (
+					<p className="mt-1 text-sm font-semibold text-blue-500 text-center">
+						Loading...
+					</p>
+				)}
 			</form>
 		</div>
 	);
@@ -96,19 +97,11 @@ export function LoginForm() {
 		resolver: zodResolver(LoginSchema),
 	});
 	const router = useRouter();
-	const [loginError, setLoginError] = useState<string>("");
+	const { login, isLoading, loginError } = useLogin();
 
 	const onSubmit = async (data: LoginFormData) => {
-		try {
-			const user = await pb
-				.collection("users")
-				.authWithPassword(data.email, data.password);
-			console.log(user);
-			router.push("/dashboard");
-		} catch (error) {
-			console.log(error);
-			setLoginError("Email or password are incorrect");
-		}
+		await login({ email: data.email, password: data.password });
+		router.push("/dashboard");
 	};
 
 	return (
@@ -123,7 +116,7 @@ export function LoginForm() {
 					errors={errors.email}
 				/>
 				<InputText
-					type="text"
+					type="password"
 					placeholder="Password"
 					name="password"
 					register={register}
@@ -135,6 +128,12 @@ export function LoginForm() {
 				>
 					Continue
 				</Button>
+				{isLoading && (
+					<p className="mt-1 text-sm font-semibold text-blue-500 text-center">
+						Loading...
+					</p>
+				)}
+
 				{loginError && (
 					<p className="mt-1 text-sm font-semibold text-red-500 text-center">
 						{loginError}

@@ -100,7 +100,11 @@ export function LoginForm() {
 	const { login, isLoading, loginError } = useLogin();
 
 	const onSubmit = async (data: LoginFormData) => {
-		await login({ email: data.email, password: data.password });
+		const authData = await login({
+			email: data.email,
+			password: data.password,
+		});
+		if (!authData) return;
 		router.push("/dashboard");
 	};
 

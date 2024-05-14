@@ -32,7 +32,7 @@ export default function useRegister() {
 
 		try {
 			const record = await pb.collection("users").create(newUser);
-			console.log(record);
+			return record;
 		} catch (error) {
 			setError("email", { message: "Email already exists" });
 		}

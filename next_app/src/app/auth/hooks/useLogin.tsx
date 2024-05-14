@@ -19,7 +19,7 @@ export default function useLogin() {
 				.collection("users")
 				.authWithPassword(email, password);
 
-			console.log(authData);
+			return authData;
 		} catch (error) {
 			console.log(error);
 			setLoginError("Email or password are incorrect");

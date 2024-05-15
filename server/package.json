@@ -1,0 +1,28 @@
+{
+	"name": "server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"//": "use this to build the project before deploying it to production",
+		"build": "tsc --build",
+		"//": "use this to start the server in production",
+		"start": "node ./dist/index.js",
+		"//": "use this for development, it will restart the server when you make changes to the code",
+		"dev": "nodemon ./src/index.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/express": "^4.17.21",
+		"@types/node": "^20.12.12",
+		"nodemon": "^3.1.0",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.4.5"
+	},
+	"dependencies": {
+		"express": "^4.19.2"
+	}
+}

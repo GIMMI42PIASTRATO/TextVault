@@ -1,4 +1,4 @@
-import pb from "@/lib/pocketbase";
+import { createBrowserClient } from "@/lib/pocketbase";
 import { UseFormSetError } from "react-hook-form";
 import { FormData } from "../types";
 import { useState } from "react";
@@ -31,13 +31,15 @@ export default function useRegister() {
 		};
 
 		try {
-			const record = await pb.collection("users").create(newUser);
+			const client = createBrowserClient();
+			const record = client.collection("users").create(newUser);
+
 			return record;
 		} catch (error) {
 			setError("email", { message: "Email already exists" });
+		} finally {
+			setIsLoading(false);
 		}
-
-		setIsLoading(false);
 	};
 
 	return { createRecord, isLoading };

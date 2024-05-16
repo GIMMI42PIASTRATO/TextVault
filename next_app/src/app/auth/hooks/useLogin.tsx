@@ -1,6 +1,5 @@
-import pb from "@/lib/pocketbase";
+import { createBrowserClient } from "@/lib/pocketbase";
 import { useState } from "react";
-import { set } from "react-hook-form";
 
 export default function useLogin() {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -15,7 +14,8 @@ export default function useLogin() {
 	}) => {
 		setIsLoading(true);
 		try {
-			const authData = await pb
+			const client = createBrowserClient();
+			const authData = await client
 				.collection("users")
 				.authWithPassword(email, password);
 
@@ -23,8 +23,9 @@ export default function useLogin() {
 		} catch (error) {
 			console.log(error);
 			setLoginError("Email or password are incorrect");
+		} finally {
+			setIsLoading(false);
 		}
-		setIsLoading(false);
 	};
 
 	return { login, isLoading, loginError };

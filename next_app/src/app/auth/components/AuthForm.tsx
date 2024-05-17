@@ -104,6 +104,7 @@ export function LoginForm() {
 			email: data.email,
 			password: data.password,
 		});
+		console.log(authData);
 		if (!authData) return;
 		router.push("/dashboard");
 	};

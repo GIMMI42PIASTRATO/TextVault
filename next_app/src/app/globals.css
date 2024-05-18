@@ -20,6 +20,38 @@
 		--quaternary-color: #fed919;
 		--white: #fff;
 
+		/* dashboard colors */
+		/* dark */
+		--dash-dark-bg1: #191919;
+
+		--dash-dark-selected: #2c2c2c;
+		--dash-dark-selected-hover: #383838;
+
+		--dash-dark-bg2: #202020;
+		--dash-dark-bg-hover2: #2c2c2c;
+
+		--dash-dark-bg3: #262626;
+		--dash-dark-bg-hover3: #2f2f2f;
+
+
+		--dash-dark-text1: #d4d4d4;
+		--dash-dark-text2: #868686;
+
+		/* white */
+		--dash-white-bg1: #ffffff;
+
+		--dash-white-selected: #f7f7f5;
+		--dash-white-selected-hover: #e6e6e4;
+
+		--dash-white-bg2: #f7f7f5;
+		--dash-white-bg-hover2: #ededeb;
+
+		--dash-white-bg3: #f0f0ee;
+		--dash-white-bg-hover3: #e6e6e4;
+
+		--dash-white-text1: #000000;
+		--dash-white-text2: #868686;
+
 		/* Shadcnui variable */
 		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;

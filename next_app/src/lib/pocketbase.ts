@@ -22,9 +22,11 @@ export function createBrowserClient() {
 	if (!singletonClient) singletonClient = _singletonClient;
 
 	singletonClient.authStore.onChange(() => {
-		document.cookie = singletonClient!.authStore.exportToCookie({
+		const cookieString = singletonClient!.authStore.exportToCookie({
 			httpOnly: false,
 		});
+		console.log("cookieString", cookieString);
+		document.cookie = cookieString;
 	});
 
 	return singletonClient;

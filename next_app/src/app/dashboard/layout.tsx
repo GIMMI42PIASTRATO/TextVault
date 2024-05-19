@@ -15,7 +15,11 @@ export default function RootLayout({
 
 	return (
 		<html lang="en">
-			<body className={`${inter.className} ${darkMode && "dark"}`}>
+			<body
+				className={`${inter.className} ${
+					darkMode && "dark"
+				} text-[--dash-dark-text1]`}
+			>
 				<DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
 					<Navbar />
 				</DarkModeContext.Provider>

@@ -104,8 +104,10 @@ export function LoginForm() {
 			email: data.email,
 			password: data.password,
 		});
-		console.log(authData);
+
 		if (!authData) return;
+
+		localStorage.setItem("userId", authData.record.id);
 		router.push("/dashboard");
 	};
 

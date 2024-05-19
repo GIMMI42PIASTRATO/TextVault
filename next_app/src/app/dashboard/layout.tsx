@@ -1,13 +1,26 @@
+"use client";
+
 import { inter } from "@/utils/fonts";
+import Navbar from "./components/Navbar";
+import "../globals.css";
+import { useState } from "react";
+import { DarkModeContext } from "./context/DarkModeContext";
 
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const [darkMode, setDarkMode] = useState<boolean>(true);
+
 	return (
-		<html lang="en" className="h-full">
-			<body className={inter.className}>{children}</body>
+		<html lang="en">
+			<body className={`${inter.className} ${darkMode && "dark"}`}>
+				<DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
+					<Navbar />
+				</DarkModeContext.Provider>
+				{children}
+			</body>
 		</html>
 	);
 }

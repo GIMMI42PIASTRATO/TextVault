@@ -1,33 +1,14 @@
 import { createAvatar } from "@dicebear/core";
 import { loreleiNeutral } from "@dicebear/collection";
-import { createBrowserClient } from "@/lib/pocketbase";
-import { UsersResponse } from "@/types/pocketbase-types";
-import { useState, useEffect } from "react";
+import useGetUser from "@/hooks/useGetUser";
 
 // components
 import Settings from "./Settings";
 
 export default function ShowUser() {
-	const [user, setUser] = useState<UsersResponse | null>(null);
+	const user = useGetUser();
 
-	// Get the userId from localStorage
-	const userId = localStorage.getItem("userId");
-	const pb = createBrowserClient();
-
-	useEffect(() => {
-		console.log("i'm here");
-		if (!userId) return;
-
-		const getUser = async () => {
-			// Get the user from the userId
-			const user = await pb.collection("users").getOne(userId);
-			setUser(user);
-		};
-
-		getUser();
-	}, [userId, pb]);
-
-	if (!userId) return;
+	if (!user) return null;
 
 	const svgAvatar = createAvatar(loreleiNeutral, {
 		seed: user?.name ?? "John Doe",

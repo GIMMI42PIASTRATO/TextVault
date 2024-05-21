@@ -16,7 +16,9 @@ export default function LinkComponent({
 	return (
 		<Link
 			href={href}
-			className={`${inter.className} ${style.link} ${style[className]}`}
+			className={`${inter.className} ${style.link} ${
+				className && style[className]
+			}`}
 		>
 			{children}
 		</Link>

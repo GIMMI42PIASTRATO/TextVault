@@ -4,10 +4,14 @@ import { createBrowserClient } from "@/lib/pocketbase";
 
 export default function useGetUser() {
 	const [user, setUser] = useState<UsersResponse | null>(null);
-
-	// Get the userId from localStorage
-	const userId = localStorage.getItem("userId");
+	const [userId, setUserId] = useState<string | null>(null);
 	const pb = createBrowserClient();
+
+	useEffect(() => {
+		// Get the userId from localStorage
+		const id = localStorage.getItem("userId");
+		setUserId(id);
+	}, []);
 
 	useEffect(() => {
 		console.log("i'm here");

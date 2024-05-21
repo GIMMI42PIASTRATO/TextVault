@@ -1,7 +1,12 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { FormData, LoginFormData, LoginSchema, UserSchema } from "../types";
+import {
+	FormData,
+	LoginFormData,
+	LoginSchema,
+	UserSchema,
+} from "@/types/auth-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
@@ -10,8 +15,8 @@ import FormFields from "./FormFields";
 import InputText from "@/components/InputText/InputText";
 
 import { useRouter } from "next/navigation";
-import useLogin from "../hooks/useLogin";
-import useRegister from "../hooks/useRegister";
+import useLogin from "@/hooks/useLogin";
+import useRegister from "@/hooks/useRegister";
 
 export function RegisterForm() {
 	const { createRecord, isLoading } = useRegister();
@@ -25,14 +30,17 @@ export function RegisterForm() {
 	const router = useRouter();
 
 	const onSubmit = async (data: FormData) => {
-		await createRecord({
+		const record = await createRecord({
 			email: data.email,
 			name: data.username,
 			password: data.password,
 			passwordConfirm: data.confirmpassword,
 			setError,
 		});
-		router.push("/dashboard");
+
+		if (!record) return;
+
+		router.push("/auth/login");
 	};
 
 	return (

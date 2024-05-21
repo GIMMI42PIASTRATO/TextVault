@@ -1,6 +1,6 @@
 import { createBrowserClient } from "@/lib/pocketbase";
 import { UseFormSetError } from "react-hook-form";
-import { FormData } from "../types";
+import { FormData } from "@/types/auth-types";
 import { useState } from "react";
 
 interface RegisterData {

@@ -1,4 +1,4 @@
-import { InputTextProps } from "@/app/auth/types";
+import { InputTextProps } from "@/types/auth-types";
 
 export default function InputText({
 	type,

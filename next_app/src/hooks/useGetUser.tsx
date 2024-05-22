@@ -1,11 +1,30 @@
-import { useEffect, useState } from "react";
-import { UsersResponse } from "@/types/pocketbase-types";
+import { useEffect, useState, useMemo } from "react";
+import { Collections, UsersResponse } from "@/types/pocketbase-types";
 import { createBrowserClient } from "@/lib/pocketbase";
+import { v4 as uuidv4 } from "uuid";
+import { faker } from "@faker-js/faker";
 
 export default function useGetUser() {
-	const [user, setUser] = useState<UsersResponse | null>(null);
-	const [userId, setUserId] = useState<string | null>(null);
 	const pb = createBrowserClient();
+
+	const defaultUser = useMemo(() => {
+		return {
+			email: "nulla@voidmail.com",
+			emailVisibility: false,
+			username: faker.internet.userName(),
+			verified: false,
+			name: "The Nulla Dev",
+			avatar: "",
+			id: uuidv4(),
+			created: new Date().toISOString(),
+			updated: new Date().toISOString(),
+			collectionId: "some-collection-id",
+			collectionName: Collections.Users,
+		};
+	}, []);
+
+	const [user, setUser] = useState<UsersResponse>(defaultUser);
+	const [userId, setUserId] = useState<string | null>(null);
 
 	useEffect(() => {
 		// Get the userId from localStorage
@@ -14,17 +33,24 @@ export default function useGetUser() {
 	}, []);
 
 	useEffect(() => {
-		console.log("i'm here");
-		if (!userId) return;
-
 		const getUser = async () => {
-			// Get the user from the userId
-			const user = await pb.collection("users").getOne(userId);
-			setUser(user);
+			try {
+				if (!userId) throw new Error("No userId found in localStorage");
+
+				// Get the user from the userId
+				const user = await pb
+					.collection("users")
+					.getOne<UsersResponse>(userId);
+				setUser(user);
+			} catch (error) {
+				console.error(error);
+				// Use default user
+				setUser(defaultUser);
+			}
 		};
 
 		getUser();
-	}, [userId, pb]);
+	}, [userId, pb, defaultUser]);
 
 	return user;
 }

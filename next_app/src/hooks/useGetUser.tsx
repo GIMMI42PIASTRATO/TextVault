@@ -7,23 +7,7 @@ import { faker } from "@faker-js/faker";
 export default function useGetUser() {
 	const pb = createBrowserClient();
 
-	const defaultUser = useMemo(() => {
-		return {
-			email: "nulla@voidmail.com",
-			emailVisibility: false,
-			username: faker.internet.userName(),
-			verified: false,
-			name: "The Nulla Dev",
-			avatar: "",
-			id: uuidv4(),
-			created: new Date().toISOString(),
-			updated: new Date().toISOString(),
-			collectionId: "some-collection-id",
-			collectionName: Collections.Users,
-		};
-	}, []);
-
-	const [user, setUser] = useState<UsersResponse>(defaultUser);
+	const [user, setUser] = useState<UsersResponse | null>(null);
 	const [userId, setUserId] = useState<string | null>(null);
 
 	useEffect(() => {
@@ -45,12 +29,25 @@ export default function useGetUser() {
 			} catch (error) {
 				console.error(error);
 				// Use default user
+				const defaultUser: UsersResponse = {
+					email: "nulla@voidmail.com",
+					emailVisibility: false,
+					username: faker.internet.userName(),
+					verified: false,
+					name: "The Nulla Dev",
+					avatar: "",
+					id: uuidv4(),
+					created: new Date().toISOString(),
+					updated: new Date().toISOString(),
+					collectionId: "some-collection-id",
+					collectionName: Collections.Users,
+				};
 				setUser(defaultUser);
 			}
 		};
 
 		getUser();
-	}, [userId, pb, defaultUser]);
+	}, [userId, pb]);
 
 	return user;
 }

@@ -34,7 +34,7 @@ export default function useGetUser() {
 					emailVisibility: false,
 					username: faker.internet.userName(),
 					verified: false,
-					name: "The Nulla Dev",
+					name: "Nulla The Dev",
 					avatar: "",
 					id: uuidv4(),
 					created: new Date().toISOString(),

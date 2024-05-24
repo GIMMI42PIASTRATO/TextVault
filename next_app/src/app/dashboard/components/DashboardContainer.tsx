@@ -3,5 +3,5 @@ export default function DashboardContainer({
 }: {
 	children: React.ReactNode;
 }) {
-	return <div className="flex flex-col ml-72 mr-8 my-6">{children}</div>;
+	return <div className="flex flex-col ml-80 mr-8 my-6">{children}</div>;
 }

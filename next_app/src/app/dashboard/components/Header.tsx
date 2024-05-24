@@ -1,9 +1,8 @@
-"use client";
-
-import useGetUser from "@/hooks/useGetUser";
+import { userAgent } from "next/server";
+import { useUserContext } from "../context/UserContext";
 
 export default function Header() {
-	const user = useGetUser();
+	const user = useUserContext();
 
 	return (
 		<div className="flex flex-col justify-start">

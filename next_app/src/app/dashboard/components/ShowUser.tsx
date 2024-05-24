@@ -10,7 +10,9 @@ export default function ShowUser() {
 	const user: UsersResponse | null = useGetUser();
 
 	const svgAvatar = createAvatar(loreleiNeutral, {
-		seed: user?.name ?? "null",
+		seed: user?.name === "Nulla The Dev" ? "g" : user?.name,
+		backgroundColor: ["b6e3f4", "c0aede"],
+		backgroundType: ["gradientLinear"],
 		size: 48,
 		radius: 50,
 	}).toString();
@@ -24,9 +26,9 @@ export default function ShowUser() {
 				// add a color for the dark mode
 				<div className="w-12 h-12 bg-gray-200 animate-pulse rounded-full dark:bg-zinc-700 "></div>
 			)}
-			<div className="flex flex-col">
+			<div className="w-full flex flex-col">
 				{user ? (
-					<span className="text-sm font-semibold overflow-hidden text-ellipsis">
+					<span className="text-sm font-semibold overflow-hidden text-ellipsis text-nowrap">
 						{user?.name}
 					</span>
 				) : (
@@ -35,7 +37,7 @@ export default function ShowUser() {
 					</span>
 				)}
 				{user ? (
-					<span className="text-xs text-gray-500 overflow-hidden text-ellipsis">
+					<span className="text-xs text-gray-500 overflow-hidden text-ellipsis text-nowrap">
 						{user?.email}
 					</span>
 				) : (

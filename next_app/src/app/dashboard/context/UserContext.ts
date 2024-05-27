@@ -5,8 +5,9 @@ export const UserContext = createContext<UsersResponse | null>(null);
 
 export const useUserContext = () => {
 	const context = useContext(UserContext);
+
 	if (!context) {
-		throw new Error("useUserContext must be used within a UserProvider");
+		console.log("user is null in UserContext");
 	}
 
 	return context;

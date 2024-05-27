@@ -1,4 +1,3 @@
-import { userAgent } from "next/server";
 import { useUserContext } from "../context/UserContext";
 
 export default function Header() {

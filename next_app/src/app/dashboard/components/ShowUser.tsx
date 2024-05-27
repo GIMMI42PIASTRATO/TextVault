@@ -1,13 +1,12 @@
 import { createAvatar } from "@dicebear/core";
 import { loreleiNeutral } from "@dicebear/collection";
-import useGetUser from "@/hooks/useGetUser";
-import { UsersResponse } from "@/types/pocketbase-types";
+import { useUserContext } from "../context/UserContext";
 
 // components
 import Settings from "./Settings";
 
 export default function ShowUser() {
-	const user: UsersResponse | null = useGetUser();
+	const user = useUserContext();
 
 	const svgAvatar = createAvatar(loreleiNeutral, {
 		seed: user?.name === "Nulla The Dev" ? "g" : user?.name,

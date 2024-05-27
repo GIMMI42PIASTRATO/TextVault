@@ -3,6 +3,7 @@ import { Collections, UsersResponse } from "@/types/pocketbase-types";
 import { createBrowserClient } from "@/lib/pocketbase";
 import { v4 as uuidv4 } from "uuid";
 import { faker } from "@faker-js/faker";
+import { ClientResponseError } from "pocketbase";
 
 export default function useGetUser() {
 	const pb = createBrowserClient();
@@ -22,12 +23,19 @@ export default function useGetUser() {
 				if (!userId) throw new Error("No userId found in localStorage");
 
 				// Get the user from the userId
+				console.log("Fetching user with userId:", userId);
+
 				const user = await pb
 					.collection("users")
 					.getOne<UsersResponse>(userId);
 				setUser(user);
 			} catch (error) {
-				console.error(error);
+				if (error instanceof ClientResponseError) {
+					console.error("Details of ClientResponseError: ", error);
+				} else {
+					console.error("Details of Error: ", error);
+				}
+
 				// Use default user
 				const defaultUser: UsersResponse = {
 					email: "nulla@voidmail.com",

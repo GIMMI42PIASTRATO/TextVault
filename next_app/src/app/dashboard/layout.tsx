@@ -5,7 +5,8 @@ import Navbar from "./components/Navbar";
 import "../globals.css";
 import { useState } from "react";
 import { DarkModeContext } from "./context/DarkModeContext";
-import ChangeTheme from "./components/ChangeTheme";
+import { UserContext } from "./context/UserContext";
+import useGetUser from "@/hooks/useGetUser";
 
 export default function RootLayout({
 	children,
@@ -13,6 +14,9 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	const [darkMode, setDarkMode] = useState<boolean>(true);
+	const user = useGetUser();
+
+	console.log("useGetUser:", user);
 
 	return (
 		<html lang="en">
@@ -23,10 +27,13 @@ export default function RootLayout({
 						: "text-[--dash-white-text1] bg-[--dash-white-bg1]"
 				}`}
 			>
-				<DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
-					<Navbar />
-				</DarkModeContext.Provider>
-				{children}
+				<UserContext.Provider value={user}>
+					<DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
+						<Navbar />
+					</DarkModeContext.Provider>
+
+					{children}
+				</UserContext.Provider>
 			</body>
 		</html>
 	);

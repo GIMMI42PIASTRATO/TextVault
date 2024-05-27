@@ -4,6 +4,6 @@ export default function DashboardContainer({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="flex flex-col ml-[19rem] mr-12 my-6">{children}</div>
+		<div className="flex flex-col ml-[19rem] mr-12 my-10">{children}</div>
 	);
 }

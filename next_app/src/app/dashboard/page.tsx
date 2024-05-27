@@ -2,6 +2,7 @@
 
 import DashboardContainer from "./components/DashboardContainer";
 import Header from "./components/Header";
+import RecentsNotes from "./components/RecentsNotes";
 import { useUserContext } from "./context/UserContext";
 
 export default function Dashboard() {
@@ -12,6 +13,7 @@ export default function Dashboard() {
 			{user ? (
 				<DashboardContainer>
 					<Header />
+					<RecentsNotes />
 				</DashboardContainer>
 			) : (
 				<div className="w-full h-full flex items-center justify-center">

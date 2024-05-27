@@ -5,8 +5,10 @@ export default function Header() {
 
 	return (
 		<div className="flex flex-col justify-start">
-			<small>Ready for secure notes?</small>
-			<h1>{user?.name}&apos;s Home</h1>
+			<small className="text-[--dash-dark-text2]">
+				Ready for secure notes?
+			</small>
+			<h1 className="text-2xl font-bold">{user?.name}&apos;s Home</h1>
 		</div>
 	);
 }

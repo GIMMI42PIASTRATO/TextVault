@@ -10,7 +10,7 @@ export default function NewDocBtn() {
 			const pb = createBrowserClient();
 
 			const newDocument = {
-				id_user: [user?.id],
+				user_id: [user?.id],
 				title: "Untitled",
 				content: "",
 				folder: "root",

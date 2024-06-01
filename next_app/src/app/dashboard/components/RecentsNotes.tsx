@@ -1,8 +1,8 @@
+import { useDocsContext } from "@/contexts/DocumentContext";
 import DocumentComponent from "./DocumentComponent";
-import useGetUserDocs from "@/hooks/useGetUserDocs";
 
 export default function RecentsNotes() {
-	const docs = useGetUserDocs();
+	const { docs } = useDocsContext();
 
 	return (
 		<div>

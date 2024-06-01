@@ -6,6 +6,7 @@ import "../globals.css";
 import { useState } from "react";
 import { DarkModeContext } from "./context/DarkModeContext";
 import { UserContext } from "./context/UserContext";
+import { DocsProvider } from "@/contexts/DocumentContext";
 import useGetUser from "@/hooks/useGetUser";
 
 export default function RootLayout({
@@ -28,11 +29,15 @@ export default function RootLayout({
 				}`}
 			>
 				<UserContext.Provider value={user}>
-					<DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
-						<Navbar />
-					</DarkModeContext.Provider>
+					<DocsProvider>
+						<DarkModeContext.Provider
+							value={{ darkMode, setDarkMode }}
+						>
+							<Navbar />
+						</DarkModeContext.Provider>
 
-					{children}
+						{children}
+					</DocsProvider>
 				</UserContext.Provider>
 			</body>
 		</html>

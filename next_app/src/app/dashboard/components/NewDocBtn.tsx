@@ -29,7 +29,7 @@ export default function NewDocBtn() {
 
 	return (
 		<div onClick={handleClick}>
-			<button className="flex items-center gap-2 px-3 py-2 rounded w-full text-left bg-[#4dc869] hover:bg-green-600 text-[--dash-dark-text1] dark:text-[--dash-white-text1] cursor-pointer transition-colors duration-200 ease-in-out">
+			<button className="flex items-center gap-2 px-3 py-2 rounded w-full text-left bg-[#4dc869] dark:hover:bg-[#99e3a8] text-[--dash-dark-text1] dark:text-[--dash-white-text1] cursor-pointer transition-colors duration-200 ease-in-out">
 				<NewFileIco />
 				<span className="text-sm font-semibold">New Document</span>
 			</button>

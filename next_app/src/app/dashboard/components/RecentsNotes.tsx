@@ -11,6 +11,7 @@ export default function RecentsNotes() {
 				{docs.map((doc) => (
 					<DocumentComponent
 						key={doc.id}
+						id={doc.id}
 						title={doc.title}
 						content={doc.content}
 					/>

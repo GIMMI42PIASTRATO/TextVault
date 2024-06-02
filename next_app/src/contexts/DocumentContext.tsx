@@ -5,6 +5,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 interface DocsContextType {
 	docs: RecordModel[];
 	updateDocuments: (newDocument: RecordModel) => void;
+	getDocsById: (id: string) => RecordModel | undefined;
 }
 
 interface DocsProviderProps {
@@ -25,8 +26,12 @@ export function DocsProvider({ children }: DocsProviderProps) {
 		setDocs((prevDocs) => [...prevDocs, newDocument]);
 	};
 
+	const getDocsById = (id: string) => {
+		return docs.find((doc) => doc.id === id);
+	};
+
 	return (
-		<DocsContext.Provider value={{ docs, updateDocuments }}>
+		<DocsContext.Provider value={{ docs, updateDocuments, getDocsById }}>
 			{children}
 		</DocsContext.Provider>
 	);

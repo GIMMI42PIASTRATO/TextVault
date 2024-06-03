@@ -10,7 +10,9 @@
 		"start-pb-linux": "./pb/pocketbase serve",
 		"start-win": "concurrently \"pnpm start-pb-win\" \"pnpm start-express\"",
 		"start-linux": "concurrently \"pnpm start-pb-linux\" \"pnpm start-express\"",
-		"dev": "concurrently \".\\pb\\pocketbase.exe serve\" \"nodemon ./src/index.ts\""
+		"dev": "concurrently \".\\pb\\pocketbase.exe serve\" \"nodemon ./src/index.ts\"",
+		"build-and-start-win": "pnpm build && pnpm start-win",
+		"build-and-start-linux": "pnpm build && pnpm start-linux"
 	},
 	"keywords": [],
 	"author": "",

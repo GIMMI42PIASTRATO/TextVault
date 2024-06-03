@@ -11,7 +11,16 @@
   "dependencies": {
     "@dicebear/collection": "^8.0.1",
     "@dicebear/core": "^8.0.1",
+    "@editorjs/checklist": "^1.6.0",
     "@editorjs/editorjs": "^2.29.1",
+    "@editorjs/embed": "^2.7.2",
+    "@editorjs/header": "^2.8.1",
+    "@editorjs/image": "^2.9.0",
+    "@editorjs/link": "^2.6.2",
+    "@editorjs/list": "^1.9.0",
+    "@editorjs/quote": "^2.6.0",
+    "@editorjs/raw": "^2.5.0",
+    "@editorjs/simple-image": "^1.6.0",
     "@faker-js/faker": "^8.4.1",
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-label": "^2.0.2",
@@ -30,6 +39,7 @@
     "zod": "^3.23.4"
   },
   "devDependencies": {
+    "@types/editorjs__header": "^2.6.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

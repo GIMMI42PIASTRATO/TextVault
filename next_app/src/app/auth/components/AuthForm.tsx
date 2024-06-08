@@ -17,6 +17,7 @@ import InputText from "@/components/InputText/InputText";
 import { useRouter } from "next/navigation";
 import useLogin from "@/hooks/useLogin";
 import useRegister from "@/hooks/useRegister";
+import RegisterLoginRedirect from "./RegisterLoginRedirect";
 
 export function RegisterForm() {
 	const { createRecord, isLoading } = useRegister();
@@ -85,6 +86,13 @@ export function RegisterForm() {
 				>
 					Continue
 				</Button>
+
+				<RegisterLoginRedirect
+					text="Arleady have an account?"
+					highlightText="Login"
+					linkPath="/auth/login"
+				/>
+
 				{isLoading && (
 					<p className="mt-1 text-sm font-semibold text-blue-500 text-center">
 						Loading...
@@ -143,6 +151,13 @@ export function LoginForm() {
 				>
 					Continue
 				</Button>
+
+				<RegisterLoginRedirect
+					text="Don't have an account?"
+					highlightText="Sign up"
+					linkPath="/auth/register"
+				/>
+
 				{isLoading && (
 					<p className="mt-1 text-sm font-semibold text-blue-500 text-center">
 						Loading...

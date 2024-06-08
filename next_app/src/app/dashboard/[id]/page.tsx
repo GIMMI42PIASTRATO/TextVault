@@ -2,7 +2,7 @@
 
 import DashboardContainer from "../components/DashboardContainer";
 import { useDocsContext } from "@/contexts/DocumentContext";
-import { TbFileSad } from "react-icons/tb";
+import DocumentNotFound from "./components/DocumentNotFound";
 
 interface DocumentEditorProps {
 	params: {
@@ -17,12 +17,7 @@ export default function DocumentEditor({ params }: DocumentEditorProps) {
 	if (!document) {
 		return (
 			<DashboardContainer>
-				<div className="flex flex-col justify-center items-center">
-					<TbFileSad className="w-24 h-24 text-gray-400 dark:text-gray-500" />
-					<h1 className="text-2xl font-semibold mt-2">
-						Document not found
-					</h1>
-				</div>
+				<DocumentNotFound />
 			</DashboardContainer>
 		);
 	}

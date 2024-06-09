@@ -77,6 +77,9 @@ importers:
       react-dom:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
+      react-editor-js:
+        specifier: ^2.1.0
+        version: 2.1.0(@editorjs/editorjs@2.29.1)(@editorjs/paragraph@2.11.4)(react@18.2.0)
       react-hook-form:
         specifier: ^7.51.3
         version: 7.51.3(react@18.2.0)
@@ -370,6 +373,9 @@ packages:
   '@editorjs/list@1.9.0':
     resolution: {integrity: sha512-BQEvZW4vi0O0dBvGNljiKxiE89vMSHoM2Tu2OzKUndoj7pY9AxqpgCh1qvwIVsJAlG4Lbt/vBFQilnoStMmI6A==}
 
+  '@editorjs/paragraph@2.11.4':
+    resolution: {integrity: sha512-OuTINHoHrJwKxlpTm6FtiXazwagALJbP49hfbQWBOLTNiBICncqPe1hdGfgDpeEgH9ZEGZsJelhEDxw2iwcmPA==}
+
   '@editorjs/quote@2.6.0':
     resolution: {integrity: sha512-8DiCMBT4n4UDV5bgzvfRH26HmL6YWddGC4+twvjhR+PzX0gwrnY8nFifvro79EeSqxwRtFjjlGnu5I0VTfw5aQ==}
 
@@ -558,6 +564,26 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  '@react-editor-js/client@2.1.0':
+    resolution: {integrity: sha512-X/OwqY2KKUUVIy24zvubHTI4qhiVIWMxGlU/Bc6tkf9gcsWgQjPvn75DwrQ5SIGBOYpSBcHY01JX0RRtJHRumw==}
+    peerDependencies:
+      '@editorjs/editorjs': '*'
+      '@editorjs/paragraph': '*'
+      react: '*'
+
+  '@react-editor-js/core@2.1.0':
+    resolution: {integrity: sha512-6h98D5g2RatdCDQRW/+N+eiMtjoq0n1n02m8oA7FrlEzEaOUyV+J+rmtmRS8OexLVOiNeWaSPDpVJ3MNiVLq8Q==}
+    peerDependencies:
+      '@editorjs/editorjs': '*'
+      react: '*'
+
+  '@react-editor-js/server@2.1.0':
+    resolution: {integrity: sha512-RnTbCmzCHbjcjPNKhr9FaehItHgAZyd47Lq+iIGynFqWSsrwGy46LgOXSvb50DYbwDyT0GtxaXBIk6aiFki1Dg==}
+    peerDependencies:
+      '@editorjs/editorjs': '*'
+      '@editorjs/paragraph': '*'
+      react: '*'
 
   '@rushstack/eslint-patch@1.10.2':
     resolution: {integrity: sha512-hw437iINopmQuxWPSUEvqE56NCPsiU8N4AYtfHmJFckclktzK9YQJieD3XkDCDH4OjL+C7zgPUh73R/nrcHrqw==}
@@ -1649,6 +1675,9 @@ packages:
     peerDependencies:
       react: ^18.2.0
 
+  react-editor-js@2.1.0:
+    resolution: {integrity: sha512-unI9D2pTH/2gBenc6LgCXJm8iqnrzB71CHgfjQmaB+lGR0Njx+ZXydgUQm1VofMmvF6vcCNVDE1Eb47zQbm14g==}
+
   react-hook-form@7.51.3:
     resolution: {integrity: sha512-cvJ/wbHdhYx8aviSWh28w9ImjmVsb5Y05n1+FW786vEZQJV5STNM0pW6ujS+oiBecb0ARBxJFyAnXj9+GHXACQ==}
     engines: {node: '>=12.22.0'}
@@ -2180,6 +2209,10 @@ snapshots:
     dependencies:
       '@codexteam/icons': 0.0.4
 
+  '@editorjs/paragraph@2.11.4':
+    dependencies:
+      '@codexteam/icons': 0.0.4
+
   '@editorjs/quote@2.6.0':
     dependencies:
       '@codexteam/icons': 0.0.5
@@ -2341,6 +2374,25 @@ snapshots:
       react: 18.2.0
     optionalDependencies:
       '@types/react': 18.2.79
+
+  '@react-editor-js/client@2.1.0(@editorjs/editorjs@2.29.1)(@editorjs/paragraph@2.11.4)(react@18.2.0)':
+    dependencies:
+      '@editorjs/editorjs': 2.29.1
+      '@editorjs/paragraph': 2.11.4
+      '@react-editor-js/core': 2.1.0(@editorjs/editorjs@2.29.1)(react@18.2.0)
+      react: 18.2.0
+
+  '@react-editor-js/core@2.1.0(@editorjs/editorjs@2.29.1)(react@18.2.0)':
+    dependencies:
+      '@editorjs/editorjs': 2.29.1
+      react: 18.2.0
+
+  '@react-editor-js/server@2.1.0(@editorjs/editorjs@2.29.1)(@editorjs/paragraph@2.11.4)(react@18.2.0)':
+    dependencies:
+      '@editorjs/editorjs': 2.29.1
+      '@editorjs/paragraph': 2.11.4
+      '@react-editor-js/core': 2.1.0(@editorjs/editorjs@2.29.1)(react@18.2.0)
+      react: 18.2.0
 
   '@rushstack/eslint-patch@1.10.2': {}
 
@@ -3612,6 +3664,16 @@ snapshots:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+
+  react-editor-js@2.1.0(@editorjs/editorjs@2.29.1)(@editorjs/paragraph@2.11.4)(react@18.2.0):
+    dependencies:
+      '@react-editor-js/client': 2.1.0(@editorjs/editorjs@2.29.1)(@editorjs/paragraph@2.11.4)(react@18.2.0)
+      '@react-editor-js/core': 2.1.0(@editorjs/editorjs@2.29.1)(react@18.2.0)
+      '@react-editor-js/server': 2.1.0(@editorjs/editorjs@2.29.1)(@editorjs/paragraph@2.11.4)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@editorjs/editorjs'
+      - '@editorjs/paragraph'
+      - react
 
   react-hook-form@7.51.3(react@18.2.0):
     dependencies:

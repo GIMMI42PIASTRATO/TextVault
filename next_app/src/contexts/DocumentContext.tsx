@@ -1,11 +1,11 @@
 import useGetUserDocs from "@/hooks/useGetUserDocs";
-import { RecordModel } from "pocketbase";
+import { DocumentModel } from "@/types/pocketbase-types";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 interface DocsContextType {
-	docs: RecordModel[];
-	updateDocuments: (newDocument: RecordModel) => void;
-	getDocsById: (id: string) => RecordModel | undefined;
+	docs: DocumentModel[];
+	updateDocuments: (newDocument: DocumentModel) => void;
+	getDocsById: (id: string) => DocumentModel | undefined;
 }
 
 interface DocsProviderProps {
@@ -15,14 +15,16 @@ interface DocsProviderProps {
 export const DocsContext = createContext<DocsContextType | null>(null);
 
 export function DocsProvider({ children }: DocsProviderProps) {
-	const [docs, setDocs] = useState<RecordModel[]>([]);
+	const [docs, setDocs] = useState<DocumentModel[]>([]);
 	const userDocuments = useGetUserDocs();
+
+	console.log("userDocuments", userDocuments);
 
 	useEffect(() => {
 		setDocs(userDocuments);
 	}, [userDocuments]);
 
-	const updateDocuments = (newDocument: RecordModel) => {
+	const updateDocuments = (newDocument: DocumentModel) => {
 		setDocs((prevDocs) => [...prevDocs, newDocument]);
 	};
 

@@ -1,10 +1,10 @@
 import { createBrowserClient } from "@/lib/pocketbase";
 import { useState, useEffect } from "react";
-import { RecordModel } from "pocketbase";
+import { DocumentModel } from "@/types/pocketbase-types";
 import { useUserContext } from "@/app/dashboard/context/UserContext";
 
 export default function useGetUserDocs() {
-	const [docs, setDocs] = useState<RecordModel[]>([]);
+	const [docs, setDocs] = useState<DocumentModel[]>([]);
 
 	const user = useUserContext();
 
@@ -16,11 +16,11 @@ export default function useGetUserDocs() {
 				if (!user) throw new Error("No user found");
 
 				const docsCollection = await pb.collection("docs");
-				const docs = await docsCollection.getList(1, 50, {
+				const documents = await docsCollection.getList(1, 50, {
 					filter: `user_id~ '${user.id}'`,
 				});
 
-				setDocs(docs.items);
+				setDocs(documents.items as DocumentModel[]);
 			};
 
 			getDocs();

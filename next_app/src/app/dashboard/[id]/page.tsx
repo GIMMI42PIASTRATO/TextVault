@@ -3,12 +3,7 @@
 import DashboardContainer from "../components/DashboardContainer";
 import { useDocsContext } from "@/contexts/DocumentContext";
 import DocumentNotFound from "./components/DocumentNotFound";
-
-// blocknote imports
-import "@blocknote/core/fonts/inter.css";
-import { useCreateBlockNote } from "@blocknote/react";
-import { BlockNoteView } from "@blocknote/mantine";
-import "@blocknote/mantine/style.css";
+import Editor from "./components/Editor";
 
 interface DocumentEditorProps {
 	params: {
@@ -20,8 +15,10 @@ export default function DocumentEditor({ params }: DocumentEditorProps) {
 	const { getDocsById } = useDocsContext();
 	const document = getDocsById(params.id);
 
-	// Creates a new editor instance
-	const editor = useCreateBlockNote();
+	const onChange = (content: string) => {
+		// TODO - CALL DOCUMENT CONTEXT TO UPDATE DOCUMENT
+		console.log("Editor content:", content);
+	};
 
 	if (!document) {
 		return (
@@ -33,8 +30,7 @@ export default function DocumentEditor({ params }: DocumentEditorProps) {
 
 	return (
 		<DashboardContainer>
-			<h1>{document.title}</h1>
-			<BlockNoteView editor={editor} defaultValue={document.content} />
+			<Editor onChange={onChange} initialContent={document.content} />
 		</DashboardContainer>
 	);
 }

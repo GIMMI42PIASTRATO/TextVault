@@ -37,9 +37,9 @@ export default function RootLayout({
 							value={{ darkMode, setDarkMode }}
 						>
 							<Navbar />
-						</DarkModeContext.Provider>
 
-						{children}
+							{children}
+						</DarkModeContext.Provider>
 					</DocsProvider>
 				</UserContext.Provider>
 			</body>

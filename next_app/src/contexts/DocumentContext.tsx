@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 interface DocsContextType {
 	docs: DocumentModel[];
-	updateDocuments: (newDocument: DocumentModel) => void;
+	addNewDocument: (newDocument: DocumentModel) => void;
 	getDocsById: (id: string) => DocumentModel | undefined;
 }
 
@@ -24,7 +24,7 @@ export function DocsProvider({ children }: DocsProviderProps) {
 		setDocs(userDocuments);
 	}, [userDocuments]);
 
-	const updateDocuments = (newDocument: DocumentModel) => {
+	const addNewDocument = (newDocument: DocumentModel) => {
 		setDocs((prevDocs) => [...prevDocs, newDocument]);
 	};
 
@@ -32,8 +32,12 @@ export function DocsProvider({ children }: DocsProviderProps) {
 		return docs.find((doc) => doc.id === id);
 	};
 
+	// TODO - MOVE THE LOGIC OF NEWDOCBTN TO THIS CONTEXT
+	// TODO - CREATE A FUNCTION TO UPDATE DOCUMENTS
+	// TODO - CREATE A FUNCTION TO DELETE DOCUMENTS
+
 	return (
-		<DocsContext.Provider value={{ docs, updateDocuments, getDocsById }}>
+		<DocsContext.Provider value={{ docs, addNewDocument, getDocsById }}>
 			{children}
 		</DocsContext.Provider>
 	);

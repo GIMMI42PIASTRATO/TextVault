@@ -2,10 +2,11 @@ import NewFileIco from "@/components/icons/NewFileIco";
 import { useUserContext } from "../context/UserContext";
 import { createBrowserClient } from "@/lib/pocketbase";
 import { useDocsContext } from "@/contexts/DocumentContext";
+import { DocumentModel } from "@/types/pocketbase-types";
 
 export default function NewDocBtn() {
 	const user = useUserContext();
-	const { updateDocuments } = useDocsContext();
+	const { addNewDocument } = useDocsContext();
 
 	const handleClick = async () => {
 		try {
@@ -19,9 +20,11 @@ export default function NewDocBtn() {
 			};
 
 			const docsCollection = await pb.collection("docs");
-			const document = await docsCollection.create(newDocument);
+			const document = (await docsCollection.create(
+				newDocument
+			)) as DocumentModel;
 
-			updateDocuments(document);
+			addNewDocument(document);
 		} catch (error) {
 			console.error("Error creating new document", error);
 		}

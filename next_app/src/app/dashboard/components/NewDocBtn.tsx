@@ -5,29 +5,10 @@ import { useDocsContext } from "@/contexts/DocumentContext";
 import { DocumentModel } from "@/types/pocketbase-types";
 
 export default function NewDocBtn() {
-	const user = useUserContext();
 	const { addNewDocument } = useDocsContext();
 
-	const handleClick = async () => {
-		try {
-			const pb = createBrowserClient();
-
-			const newDocument = {
-				user_id: [user?.id],
-				title: "Untitled",
-				content: "",
-				folder: "root",
-			};
-
-			const docsCollection = await pb.collection("docs");
-			const document = (await docsCollection.create(
-				newDocument
-			)) as DocumentModel;
-
-			addNewDocument(document);
-		} catch (error) {
-			console.error("Error creating new document", error);
-		}
+	const handleClick = () => {
+		addNewDocument();
 	};
 
 	return (

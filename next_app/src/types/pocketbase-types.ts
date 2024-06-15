@@ -2,6 +2,7 @@
  * This file was @generated using pocketbase-typegen
  */
 
+import { Block, PartialBlock } from "@blocknote/core";
 import type PocketBase from "pocketbase";
 import type { RecordService } from "pocketbase";
 import { RecordModel } from "pocketbase";
@@ -63,6 +64,6 @@ export type TypedPocketBase = PocketBase & {
 export type DocumentModel = RecordModel & {
 	user_id: Array<string>;
 	title: string;
-	content: string;
+	content: PartialBlock[] | Block[];
 	folder: string;
 };

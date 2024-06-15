@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { Block, InlineContent } from "@blocknote/core";
 
 interface DocumentComponentProps {
 	id: string;
 	title: string;
-	content: string;
+	content: Block[];
 }
 
 export default function DocumentComponent({
@@ -18,7 +19,6 @@ export default function DocumentComponent({
 		>
 			<div className="text-xl">📄</div>
 			<h4 className="font-semibold mt-1">{title}</h4>
-			<p className="text-sm text-gray-500 mt-2">{content}</p>
 		</Link>
 	);
 }

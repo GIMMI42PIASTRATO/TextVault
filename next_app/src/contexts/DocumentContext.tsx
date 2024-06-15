@@ -34,7 +34,12 @@ export function DocsProvider({ children }: DocsProviderProps) {
 			const newObjDocument = {
 				user_id: [user?.id],
 				title: "Untitled",
-				content: "",
+				content: [
+					{
+						type: "heading",
+						content: "Untitled",
+					},
+				],
 				folder: "root",
 			};
 
@@ -53,8 +58,9 @@ export function DocsProvider({ children }: DocsProviderProps) {
 		return docs.find((doc) => doc.id === id);
 	};
 
-	// TODO - MOVE THE LOGIC OF NEWDOCBTN TO THIS CONTEXT
 	// TODO - CREATE A FUNCTION TO UPDATE DOCUMENTS
+	const updateDocument = async (id: string, updatedDoc: DocumentModel) => {};
+
 	// TODO - CREATE A FUNCTION TO DELETE DOCUMENTS
 
 	return (

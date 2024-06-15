@@ -15,6 +15,8 @@ export default function DocumentEditor({ params }: DocumentEditorProps) {
 	const { getDocsById } = useDocsContext();
 	const document = getDocsById(params.id);
 
+	console.log("Document:", document);
+
 	const onChange = (content: string) => {
 		// TODO - CALL DOCUMENT CONTEXT TO UPDATE DOCUMENT
 		console.log("Editor content:", content);

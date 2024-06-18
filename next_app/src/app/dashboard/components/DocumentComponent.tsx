@@ -4,14 +4,14 @@ import { Block, InlineContent } from "@blocknote/core";
 interface DocumentComponentProps {
 	id: string;
 	title: string;
-	content: Block[];
+	// content: Block[];
 }
 
 export default function DocumentComponent({
 	id,
 	title,
-	content,
-}: DocumentComponentProps) {
+}: // content,
+DocumentComponentProps) {
 	return (
 		<Link
 			href={`/dashboard/${id}`}

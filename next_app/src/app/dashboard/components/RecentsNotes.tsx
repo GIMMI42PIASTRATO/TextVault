@@ -13,7 +13,7 @@ export default function RecentsNotes() {
 						key={doc.id}
 						id={doc.id}
 						title={doc.title}
-						content={doc.content}
+						// content={doc.content}
 					/>
 				))}
 			</div>

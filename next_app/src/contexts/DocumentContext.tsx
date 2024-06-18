@@ -3,11 +3,13 @@ import { DocumentModel } from "@/types/pocketbase-types";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { createBrowserClient } from "@/lib/pocketbase";
 import { useUserContext } from "@/app/dashboard/context/UserContext";
+import { json } from "stream/consumers";
 
 interface DocsContextType {
 	docs: DocumentModel[];
 	addNewDocument: () => void;
 	getDocsById: (id: string) => DocumentModel | undefined;
+	updateDocument: (id: string, updatedDoc: string) => void;
 }
 
 interface DocsProviderProps {
@@ -59,12 +61,41 @@ export function DocsProvider({ children }: DocsProviderProps) {
 	};
 
 	// TODO - CREATE A FUNCTION TO UPDATE DOCUMENTS
-	const updateDocument = async (id: string, updatedDoc: DocumentModel) => {};
+	const updateDocument = async (id: string, jsonUpdatedDoc: string) => {
+		if (!user) {
+			console.error("User is not logged in");
+			return;
+		}
+
+		const documentToUpdate = getDocsById(id);
+
+		if (!documentToUpdate?.user_id.includes(user.id)) {
+			console.error("User is not allowed to update this document");
+			return;
+		}
+
+		try {
+			const pb = createBrowserClient();
+
+			const docsCollection = await pb.collection("docs");
+			const record = await docsCollection.update(id, {
+				content: jsonUpdatedDoc,
+			});
+
+			console.log("Status updated document:", record);
+
+			// TODO - UPDATE THE STATE OF THE DOCUMENTS
+		} catch (error) {
+			console.error("Error updating document", error);
+		}
+	};
 
 	// TODO - CREATE A FUNCTION TO DELETE DOCUMENTS
 
 	return (
-		<DocsContext.Provider value={{ docs, addNewDocument, getDocsById }}>
+		<DocsContext.Provider
+			value={{ docs, addNewDocument, getDocsById, updateDocument }}
+		>
 			{children}
 		</DocsContext.Provider>
 	);

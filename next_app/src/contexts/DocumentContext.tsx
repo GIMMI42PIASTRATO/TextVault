@@ -60,7 +60,6 @@ export function DocsProvider({ children }: DocsProviderProps) {
 		return docs.find((doc) => doc.id === id);
 	};
 
-	// TODO - CREATE A FUNCTION TO UPDATE DOCUMENTS
 	const updateDocument = async (id: string, jsonUpdatedDoc: string) => {
 		if (!user) {
 			console.error("User is not logged in");
@@ -78,13 +77,22 @@ export function DocsProvider({ children }: DocsProviderProps) {
 			const pb = createBrowserClient();
 
 			const docsCollection = await pb.collection("docs");
-			const record = await docsCollection.update(id, {
+			await docsCollection.update(id, {
 				content: jsonUpdatedDoc,
 			});
 
-			console.log("Status updated document:", record);
+			const updatedDocs = docs.map((doc) => {
+				if (doc.id === id) {
+					return {
+						...doc,
+						content: JSON.parse(jsonUpdatedDoc),
+					};
+				}
 
-			// TODO - UPDATE THE STATE OF THE DOCUMENTS
+				return doc;
+			});
+
+			setDocs(updatedDocs);
 		} catch (error) {
 			console.error("Error updating document", error);
 		}

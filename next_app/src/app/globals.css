@@ -124,3 +124,8 @@
 			color: var(--text-color);
 		}
 	}
+
+/* BlockNoteJS style */
+.bn-container[data-theming-css-variables][data-color-scheme="dark"] {
+	--bn-colors-editor-background: #191919;
+}

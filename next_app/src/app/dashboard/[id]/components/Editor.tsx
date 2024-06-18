@@ -11,12 +11,14 @@ type EditorProps = {
 	onChange: (content: string) => void;
 	initialContent?: PartialBlock[] | Block[];
 	editable?: boolean;
+	className?: string;
 };
 
 export default function Editor({
 	onChange,
 	initialContent,
 	editable,
+	className,
 }: EditorProps) {
 	const { darkMode } = useDarkMode();
 
@@ -26,11 +28,16 @@ export default function Editor({
 	});
 
 	return (
-		<BlockNoteView
-			editor={editor}
-			editable={editable}
-			theme={darkMode ? "dark" : "light"}
-			onChange={() => onChange(JSON.stringify(editor.document, null, 2))}
-		/>
+		<div className={className}>
+			<BlockNoteView
+				editor={editor}
+				editable={editable}
+				theme={darkMode ? "dark" : "light"}
+				onChange={() =>
+					onChange(JSON.stringify(editor.document, null, 2))
+				}
+				data-theming-css-variables
+			/>
+		</div>
 	);
 }

@@ -31,8 +31,12 @@ export default function DocumentEditor({ params }: DocumentEditorProps) {
 	}
 
 	return (
-		<DashboardContainer>
-			<Editor onChange={onChange} initialContent={document.content} />
+		<DashboardContainer className="ml-64 mr-0 mt-32">
+			<Editor
+				onChange={onChange}
+				initialContent={document.content}
+				className="max-w-[80ch] mx-auto"
+			/>
 		</DashboardContainer>
 	);
 }

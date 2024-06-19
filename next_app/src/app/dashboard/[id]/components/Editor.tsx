@@ -6,6 +6,10 @@ import "@blocknote/mantine/style.css";
 import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
 import { useDarkMode } from "../../context/DarkModeContext";
 import { Block } from "@blocknote/core";
+import { Button } from "@/components/ui/button";
+import { Smile } from "lucide-react";
+import EmojiPicker, { Emoji } from "emoji-picker-react";
+import IconPicker from "@/components/icon-picker";
 
 type EditorProps = {
 	onChange: (content: string) => void;
@@ -29,6 +33,18 @@ export default function Editor({
 
 	return (
 		<div className={className}>
+			<div className="px-[54px]">
+				<IconPicker onChange={(emoji) => console.log(emoji)}>
+					<Button
+						variant="outline"
+						className="text-muted-foreground text-xs"
+					>
+						<Smile className="h-4 w-4 mr-2" />
+						Add icon
+					</Button>
+				</IconPicker>
+				<h1 className="text-4xl font-bold">Title</h1>
+			</div>
 			<BlockNoteView
 				editor={editor}
 				editable={editable}

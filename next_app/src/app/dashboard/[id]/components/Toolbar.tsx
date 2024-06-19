@@ -7,7 +7,7 @@ export default function Toolbar() {
 		<div className="px-[54px]">
 			<IconPicker onChange={(emoji) => console.log(emoji)}>
 				<Button
-					variant="outline"
+					variant="outlineSecondary"
 					className="text-muted-foreground text-xs"
 				>
 					<Smile className="h-4 w-4 mr-2" />

@@ -4,7 +4,7 @@ export default function Header() {
 	const user = useUserContext();
 
 	return (
-		<div className="flex flex-col justify-start">
+		<div className="flex flex-col justify-start mb-12">
 			<small className="text-[--dash-dark-text2]">
 				Ready for secure notes?
 			</small>

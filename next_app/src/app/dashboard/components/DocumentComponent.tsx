@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DropDown from "./DropDown";
 
 interface DocumentComponentProps {
 	id: string;
@@ -23,7 +24,9 @@ export default function DocumentComponent({
 					<small className="text-xs">{created}</small>
 				</div>
 			</div>
-			<div>quadrato</div>
+			<div className="flex items-center">
+				<DropDown />
+			</div>
 		</Link>
 	);
 }

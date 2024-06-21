@@ -33,9 +33,11 @@
 		--dash-dark-bg3: #262626;
 		--dash-dark-bg-hover3: #2f2f2f;
 
-
 		--dash-dark-text1: #d4d4d4;
 		--dash-dark-text2: #868686;
+
+		--dash-dark-accent1: #353535;
+		--dash-dark-accent2: #2b2b2b;
 
 		/* white */
 		--dash-white-bg1: #ffffff;
@@ -51,6 +53,9 @@
 
 		--dash-white-text1: #000000;
 		--dash-white-text2: #868686;
+
+		--dash-white-accent1: #e5e7eb;
+		--dash-white-accent2: #f3f4f6;
 
 		/* Shadcnui variable */
 		--background: 0 0% 100%;

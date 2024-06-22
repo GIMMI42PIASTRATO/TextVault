@@ -30,16 +30,18 @@ export default function Editor({
 
 	return (
 		<div className={className}>
-			<Toolbar />
-			<BlockNoteView
-				editor={editor}
-				editable={editable}
-				theme={darkMode ? "dark" : "light"}
-				onChange={() =>
-					onChange(JSON.stringify(editor.document, null, 2))
-				}
-				data-theming-css-variables
-			/>
+			<div className="col-start-2">
+				<Toolbar />
+				<BlockNoteView
+					editor={editor}
+					editable={editable}
+					theme={darkMode ? "dark" : "light"}
+					onChange={() =>
+						onChange(JSON.stringify(editor.document, null, 2))
+					}
+					data-theming-css-variables
+				/>
+			</div>
 		</div>
 	);
 }

@@ -27,6 +27,7 @@ export default function DropDown() {
 			<DropdownMenuContent
 				className="dark:bg-[--dash-dark-bg2] dark:border-[--dash-dark-accent1]"
 				align="end"
+				onClick={(e) => e.stopPropagation()}
 			>
 				<DropdownMenuLabel>Actions</DropdownMenuLabel>
 				<DropdownMenuSeparator className="dark:bg-[--dash-dark-accent1]" />

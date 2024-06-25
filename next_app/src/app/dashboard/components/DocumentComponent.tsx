@@ -25,7 +25,7 @@ export default function DocumentComponent({
 				</div>
 			</div>
 			<div className="flex items-center">
-				<DropDown />
+				<DropDown id={id} />
 			</div>
 		</Link>
 	);

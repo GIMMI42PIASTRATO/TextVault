@@ -3,13 +3,13 @@ import { DocumentModel } from "@/types/pocketbase-types";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { createBrowserClient } from "@/lib/pocketbase";
 import { useUserContext } from "@/app/dashboard/context/UserContext";
-import { json } from "stream/consumers";
 
 interface DocsContextType {
 	docs: DocumentModel[];
 	addNewDocument: () => void;
 	getDocsById: (id: string) => DocumentModel | undefined;
 	updateDocument: (id: string, updatedDoc: string) => void;
+	deleteDocument: (id: string) => void;
 }
 
 interface DocsProviderProps {
@@ -99,10 +99,42 @@ export function DocsProvider({ children }: DocsProviderProps) {
 	};
 
 	// TODO - CREATE A FUNCTION TO DELETE DOCUMENTS
+	const deleteDocument = async (id: string) => {
+		if (!user) {
+			console.error("User is not logged in");
+			return;
+		}
+
+		const documentToDelete = getDocsById(id);
+
+		if (!documentToDelete?.user_id.includes(user.id)) {
+			console.error("User is not allowed to delete this document");
+			return;
+		}
+
+		try {
+			const pb = createBrowserClient();
+
+			const docsCollection = await pb.collection("docs");
+			await docsCollection.delete(id);
+
+			const updatedDocs = docs.filter((doc) => doc.id !== id);
+
+			setDocs(updatedDocs);
+		} catch (error) {
+			console.error("Error deleting document", error);
+		}
+	};
 
 	return (
 		<DocsContext.Provider
-			value={{ docs, addNewDocument, getDocsById, updateDocument }}
+			value={{
+				docs,
+				addNewDocument,
+				getDocsById,
+				updateDocument,
+				deleteDocument,
+			}}
 		>
 			{children}
 		</DocsContext.Provider>

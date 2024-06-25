@@ -12,7 +12,15 @@ import {
 
 import { Button } from "@/components/ui/button";
 
-export default function DropDown() {
+import { useDocsContext } from "@/contexts/DocumentContext";
+
+type DropDownProps = {
+	id: string;
+};
+
+export default function DropDown({ id }: DropDownProps) {
+	const { deleteDocument } = useDocsContext();
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -41,7 +49,10 @@ export default function DropDown() {
 						<span>Duaplicate</span>
 					</DropdownMenuItem>
 					<DropdownMenuSeparator className="dark:bg-[--dash-dark-accent1]" />
-					<DropdownMenuItem className="text-destructive duration-200 focus:bg-destructive focus:text-destructive-foreground">
+					<DropdownMenuItem
+						className="text-destructive duration-200 focus:bg-destructive focus:text-destructive-foreground"
+						onClick={() => deleteDocument(id)}
+					>
 						<Trash className="mr-2 h-4 w-4" />
 						<span>Delete document</span>
 					</DropdownMenuItem>

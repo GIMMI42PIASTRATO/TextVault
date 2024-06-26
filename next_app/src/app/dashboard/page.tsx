@@ -11,7 +11,7 @@ export default function Dashboard() {
 	return (
 		<>
 			{user ? (
-				<DashboardContainer>
+				<DashboardContainer className="bg-[--dash-white-bg1] dark:bg-[--dash-dark-bg1]  my-2 mr-2 ml-[16.5rem] w-full ring-1 ring-[--dash-white-accent1] dark:ring-[--dash-dark-accent1] rounded-xl">
 					<Header />
 					<RecentsNotes />
 				</DashboardContainer>

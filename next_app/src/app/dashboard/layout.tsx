@@ -14,7 +14,7 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const [darkMode, setDarkMode] = useState<boolean>(false);
+	const [darkMode, setDarkMode] = useState<boolean>(true);
 	const user = useGetUser();
 
 	console.log("useGetUser:", user);
@@ -36,9 +36,12 @@ export default function RootLayout({
 						<DarkModeContext.Provider
 							value={{ darkMode, setDarkMode }}
 						>
-							<Navbar />
+							{/* add flex-col as default and lg:flex-row to implement the navbar for small and large device*/}
+							<div className="flex min-h-screen bg-[--dash-white-bg2] dark:bg-[--dash-dark-bg2]">
+								<Navbar />
 
-							{children}
+								{children}
+							</div>
 						</DarkModeContext.Provider>
 					</DocsProvider>
 				</UserContext.Provider>

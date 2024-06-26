@@ -24,19 +24,24 @@ export default function DocumentEditor({ params }: DocumentEditorProps) {
 
 	if (!document) {
 		return (
-			<DashboardContainer>
+			<DashboardContainer className="bg-[--dash-white-bg1] dark:bg-[--dash-dark-bg1]  my-2 mr-2 ml-[16.5rem] w-full ring-1 ring-[--dash-white-accent1] dark:ring-[--dash-dark-accent1] rounded-xl">
 				<DocumentNotFound />
 			</DashboardContainer>
 		);
 	}
 
 	return (
-		<DashboardContainer className="ml-64 mr-0 mt-32">
+		<DashboardContainer
+			className="bg-[--dash-white-bg1] dark:bg-[--dash-dark-bg1]  my-2 mr-2 ml-[16.5rem] w-full ring-1 ring-[--dash-white-accent1] dark:ring-[--dash-dark-accent1] rounded-xl"
+			innerContainerStyle="sm:mt-32 mt-32"
+		>
 			<Editor
 				onChange={onChange}
 				initialContent={document.content}
 				className="grid grid-cols-[minmax(0,_1fr)_minmax(0,_80ch)_minmax(0,_1fr)]"
 			/>
 		</DashboardContainer>
+		// <DashboardContainer className="ml-64 mr-0 mt-32">
+		// </DashboardContainer>
 	);
 }

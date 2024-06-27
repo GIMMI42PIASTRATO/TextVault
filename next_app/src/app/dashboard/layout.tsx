@@ -14,7 +14,7 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const [darkMode, setDarkMode] = useState<boolean>(false);
+	const [darkMode, setDarkMode] = useState<boolean>(true);
 	const user = useGetUser();
 
 	console.log("useGetUser:", user);

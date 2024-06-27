@@ -1,6 +1,7 @@
 import { createAvatar } from "@dicebear/core";
 import { loreleiNeutral } from "@dicebear/collection";
 import { useUserContext } from "../context/UserContext";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // components
 import Settings from "./Settings";
@@ -23,7 +24,7 @@ export default function ShowUser() {
 			) : (
 				// if user is not available, dysplay the skeleton loader
 				// add a color for the dark mode
-				<div className="w-12 h-12 bg-gray-200 animate-pulse rounded-full dark:bg-zinc-700 "></div>
+				<Skeleton className="w-12 h-12 rounded-full bg-[--dash-white-accent1] dark:bg-[--dash-dark-accent1]" />
 			)}
 			<div className="w-full flex flex-col">
 				{user ? (
@@ -31,18 +32,20 @@ export default function ShowUser() {
 						{user?.name}
 					</span>
 				) : (
-					<span className="text-center mb-1 rounded-lg text-sm font-semibold overflow-hidden text-ellipsis bg-gray-200 animate-pulse dark:bg-zinc-700">
-						...
-					</span>
+					<Skeleton className="w-24 h-4 rounded-lg bg-[--dash-white-accent1] dark:bg-[--dash-dark-accent1] mb-2" />
+					// <span className="text-center mb-1 rounded-lg text-sm font-semibold overflow-hidden text-ellipsis bg-gray-200 animate-pulse dark:bg-zinc-700">
+					// 	...
+					// </span>
 				)}
 				{user ? (
 					<span className="text-xs text-gray-500 overflow-hidden text-ellipsis text-nowrap">
 						{user?.email}
 					</span>
 				) : (
-					<span className="text-xs text-center rounded-lg bg-gray-200 animate-pulse dark:bg-zinc-700">
-						...
-					</span>
+					<Skeleton className="w-24 h-3 rounded-lg bg-[--dash-white-accent1] dark:bg-[--dash-dark-accent1]" />
+					// <span className="text-xs text-center rounded-lg bg-gray-200 animate-pulse dark:bg-zinc-700">
+					// 	...
+					// </span>
 				)}
 			</div>
 			<Settings />

@@ -71,6 +71,9 @@ importers:
       react-icons:
         specifier: ^5.1.0
         version: 5.1.0(react@18.2.0)
+      react-textarea-autosize:
+        specifier: ^8.5.3
+        version: 8.5.3(@types/react@18.2.79)(react@18.2.0)
       tailwind-merge:
         specifier: ^2.3.0
         version: 2.3.0

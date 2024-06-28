@@ -10,6 +10,8 @@ interface DocsContextType {
 	getDocsById: (id: string) => DocumentModel | undefined;
 	updateDocument: (id: string, updatedDoc: string) => void;
 	deleteDocument: (id: string) => void;
+	setDocTitle: (id: string, title: string) => void;
+	getDocTitle: (id: string) => string;
 }
 
 interface DocsProviderProps {
@@ -98,7 +100,6 @@ export function DocsProvider({ children }: DocsProviderProps) {
 		}
 	};
 
-	// TODO - CREATE A FUNCTION TO DELETE DOCUMENTS
 	const deleteDocument = async (id: string) => {
 		if (!user) {
 			console.error("User is not logged in");
@@ -126,6 +127,54 @@ export function DocsProvider({ children }: DocsProviderProps) {
 		}
 	};
 
+	const setDocTitle = async (id: string, title: string) => {
+		if (!user) {
+			console.error("User is not logged in");
+			return;
+		}
+
+		const documentToUpdate = getDocsById(id);
+
+		if (!documentToUpdate?.user_id.includes(user.id)) {
+			console.error("User is not allowed to update this document");
+			return;
+		}
+
+		try {
+			const pb = createBrowserClient();
+
+			const docsCollection = await pb.collection("docs");
+			await docsCollection.update(id, {
+				title,
+			});
+
+			const updatedDocs = docs.map((doc) => {
+				if (doc.id === id) {
+					return {
+						...doc,
+						title,
+					};
+				}
+
+				return doc;
+			});
+
+			setDocs(updatedDocs);
+		} catch (error) {
+			console.error("Error updating document", error);
+		}
+	};
+
+	const getDocTitle = (id: string): string => {
+		const doc = docs.find((doc) => doc.id === id);
+
+		if (!doc) {
+			return "";
+		}
+
+		return doc.title;
+	};
+
 	return (
 		<DocsContext.Provider
 			value={{
@@ -134,6 +183,8 @@ export function DocsProvider({ children }: DocsProviderProps) {
 				getDocsById,
 				updateDocument,
 				deleteDocument,
+				setDocTitle,
+				getDocTitle,
 			}}
 		>
 			{children}

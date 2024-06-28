@@ -35,22 +35,6 @@ export default function useGetUser() {
 				} else {
 					console.error("Details of Error: ", error);
 				}
-
-				// Use default user
-				const defaultUser: UsersResponse = {
-					email: "nulla@voidmail.com",
-					emailVisibility: false,
-					username: faker.internet.userName(),
-					verified: false,
-					name: "Nulla The Dev",
-					avatar: "",
-					id: uuidv4(),
-					created: new Date().toISOString(),
-					updated: new Date().toISOString(),
-					collectionId: "some-collection-id",
-					collectionName: Collections.Users,
-				};
-				setUser(defaultUser);
 			}
 		};
 

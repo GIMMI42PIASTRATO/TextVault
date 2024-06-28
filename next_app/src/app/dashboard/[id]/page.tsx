@@ -37,7 +37,7 @@ export default function DocumentEditor({ params }: DocumentEditorProps) {
 		>
 			<Editor
 				onChange={onChange}
-				initialContent={document.content}
+				document={document}
 				className="grid grid-cols-[minmax(0,_1fr)_minmax(0,_80ch)_minmax(0,_1fr)]"
 			/>
 		</DashboardContainer>

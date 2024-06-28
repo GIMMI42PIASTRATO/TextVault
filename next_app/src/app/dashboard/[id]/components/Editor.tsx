@@ -3,21 +3,21 @@ import "@blocknote/core/fonts/inter.css";
 import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
-import { BlockNoteEditor, PartialBlock } from "@blocknote/core";
+import { BlockNoteEditor } from "@blocknote/core";
 import { useDarkMode } from "../../context/DarkModeContext";
-import { Block } from "@blocknote/core";
+import { DocumentModel } from "@/types/pocketbase-types";
 import Toolbar from "./Toolbar";
 
 type EditorProps = {
 	onChange: (content: string) => void;
-	initialContent?: PartialBlock[] | Block[];
+	document: DocumentModel;
 	editable?: boolean;
 	className?: string;
 };
 
 export default function Editor({
 	onChange,
-	initialContent,
+	document,
 	editable,
 	className,
 }: EditorProps) {
@@ -25,7 +25,7 @@ export default function Editor({
 
 	// Creates a new editor instance
 	const editor: BlockNoteEditor = useCreateBlockNote({
-		initialContent,
+		initialContent: document.content,
 	});
 
 	return (

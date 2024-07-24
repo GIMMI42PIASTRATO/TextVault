@@ -33,7 +33,7 @@ export default function Toolbar({ id, value }: ToolbarProps) {
 				</Button>
 			</IconPicker>
 			<TextareaAutosize
-				className="text-5xl bg-transparent font-bold break-words outline-none text-[#3F3F3F] dark:text-[#CFCFCF] resize-none"
+				className="w-full text-5xl bg-transparent font-bold break-words outline-none text-[#3F3F3F] dark:text-[#CFCFCF] resize-none"
 				value={title}
 				onChange={(e) => handleChange(e)}
 			/>

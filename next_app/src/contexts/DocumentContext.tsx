@@ -12,6 +12,7 @@ interface DocsContextType {
 	deleteDocument: (id: string) => void;
 	setDocTitle: (id: string, title: string) => void;
 	getDocTitle: (id: string) => string;
+	setDocIcon: (id: string, icon: string) => void;
 }
 
 interface DocsProviderProps {
@@ -45,6 +46,7 @@ export function DocsProvider({ children }: DocsProviderProps) {
 					},
 				],
 				folder: "root",
+				icon: "📄",
 			};
 
 			const docsCollection = await pb.collection("docs");
@@ -175,6 +177,44 @@ export function DocsProvider({ children }: DocsProviderProps) {
 		return doc.title;
 	};
 
+	const setDocIcon = async (id: string, icon: string) => {
+		if (!user) {
+			console.error("User is not logged in");
+			return;
+		}
+
+		const documentToUpdate = getDocsById(id);
+
+		if (!documentToUpdate?.user_id.includes(user.id)) {
+			console.error("User is not allowed to update this document");
+			return;
+		}
+
+		try {
+			const pb = createBrowserClient();
+
+			const docsCollection = await pb.collection("docs");
+			await docsCollection.update(id, {
+				icon,
+			});
+
+			const updatedDocs = docs.map((doc) => {
+				if (doc.id === id) {
+					return {
+						...doc,
+						icon,
+					};
+				}
+
+				return doc;
+			});
+
+			setDocs(updatedDocs);
+		} catch (error) {
+			console.error("Error updating document", error);
+		}
+	};
+
 	return (
 		<DocsContext.Provider
 			value={{
@@ -185,6 +225,7 @@ export function DocsProvider({ children }: DocsProviderProps) {
 				deleteDocument,
 				setDocTitle,
 				getDocTitle,
+				setDocIcon,
 			}}
 		>
 			{children}

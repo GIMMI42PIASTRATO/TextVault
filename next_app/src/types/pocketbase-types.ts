@@ -63,6 +63,7 @@ export type TypedPocketBase = PocketBase & {
 
 export type DocumentModel = RecordModel & {
 	user_id: Array<string>;
+	icon: string;
 	title: string;
 	content: PartialBlock[] | Block[];
 	folder: string;

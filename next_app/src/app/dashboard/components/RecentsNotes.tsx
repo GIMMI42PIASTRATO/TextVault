@@ -21,6 +21,7 @@ export default function RecentsNotes() {
 							<DocumentComponent
 								key={doc.id}
 								id={doc.id}
+								icon={doc.icon}
 								title={doc.title}
 								created={doc.created}
 							/>

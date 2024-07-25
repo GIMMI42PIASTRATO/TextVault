@@ -31,7 +31,11 @@ export default function Editor({
 	return (
 		<div className={className}>
 			<div className="col-start-2">
-				<Toolbar id={document.id} value={document.title} />
+				<Toolbar
+					id={document.id}
+					icon={document.icon}
+					value={document.title}
+				/>
 				<BlockNoteView
 					editor={editor}
 					editable={editable}

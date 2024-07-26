@@ -31,7 +31,7 @@ export default function Toolbar({ id, icon, value }: ToolbarProps) {
 	};
 
 	return (
-		<div className="flex flex-col items-start gap-4 px-[54px] mb-6">
+		<div className="flex flex-col items-start gap-6 px-[54px] mb-6">
 			{!_icon ? (
 				<IconPicker onChange={(emoji) => handleIconChange(emoji)}>
 					<Button

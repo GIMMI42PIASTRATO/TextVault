@@ -19,8 +19,8 @@ export function middleware(req: NextRequest) {
 		}
 	} else if (
 		req.nextUrl.pathname === "/auth/login" ||
-		req.nextUrl.pathname === "/auth/register" ||
-		req.nextUrl.pathname === "/"
+		req.nextUrl.pathname === "/auth/register"
+		// req.nextUrl.pathname === "/"
 	) {
 		console.log("i'm here 🔥");
 		if (isAuthenticated) {

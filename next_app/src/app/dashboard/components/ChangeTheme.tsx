@@ -1,4 +1,4 @@
-import { useDarkMode } from "../context/DarkModeContext";
+import { useDarkMode } from "@/contexts/DarkModeContext";
 
 export default function ChangeTheme() {
 	const { darkMode, setDarkMode } = useDarkMode();

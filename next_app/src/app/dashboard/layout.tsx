@@ -4,7 +4,7 @@ import { inter } from "@/utils/fonts";
 import Navbar from "./components/Navbar";
 import "../globals.css";
 import { useState } from "react";
-import { DarkModeContext } from "./context/DarkModeContext";
+import { DarkModeContext } from "@/contexts/DarkModeContext";
 import { UserContext } from "./context/UserContext";
 import { DocsProvider } from "@/contexts/DocumentContext";
 import useGetUser from "@/hooks/useGetUser";

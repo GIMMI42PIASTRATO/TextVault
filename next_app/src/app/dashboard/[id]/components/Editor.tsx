@@ -4,7 +4,7 @@ import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { BlockNoteEditor } from "@blocknote/core";
-import { useDarkMode } from "../../context/DarkModeContext";
+import { useDarkMode } from "@/contexts/DarkModeContext";
 import { DocumentModel } from "@/types/pocketbase-types";
 import Toolbar from "./Toolbar";
 

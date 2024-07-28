@@ -1,6 +1,6 @@
 "use client";
 
-import { useDarkMode } from "@/app/dashboard/context/DarkModeContext";
+import { useDarkMode } from "@/contexts/DarkModeContext";
 import {
 	Popover,
 	PopoverContent,

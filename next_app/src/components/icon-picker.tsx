@@ -1,6 +1,6 @@
 "use client";
 
-import { useDarkMode } from "@/contexts/DarkModeContext";
+import { useTheme } from "next-themes";
 import {
 	Popover,
 	PopoverContent,
@@ -15,14 +15,14 @@ type IconPickerProps = {
 };
 
 export default function IconPicker({ children, onChange }: IconPickerProps) {
-	const { darkMode } = useDarkMode();
+	const { theme } = useTheme();
 
 	return (
 		<Popover>
 			<PopoverTrigger>{children}</PopoverTrigger>
 			<PopoverContent className="p-0 w-full border-none shadow-none">
 				<EmojiPicker
-					theme={(darkMode ? "dark" : "light") as Theme}
+					theme={theme as Theme}
 					onEmojiClick={(data) => onChange(data.emoji)}
 				/>
 			</PopoverContent>

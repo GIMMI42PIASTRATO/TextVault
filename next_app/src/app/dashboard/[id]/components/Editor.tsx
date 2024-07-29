@@ -4,9 +4,12 @@ import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { BlockNoteEditor } from "@blocknote/core";
-import { useDarkMode } from "@/contexts/DarkModeContext";
+// import { useDarkMode } from "@/contexts/DarkModeContext";
+import { useTheme } from "next-themes";
 import { DocumentModel } from "@/types/pocketbase-types";
 import Toolbar from "./Toolbar";
+
+import { useState, useEffect } from "react";
 
 type EditorProps = {
 	onChange: (content: string) => void;
@@ -21,12 +24,18 @@ export default function Editor({
 	editable,
 	className,
 }: EditorProps) {
-	const { darkMode } = useDarkMode();
+	// const { darkMode } = useDarkMode();
+	const [mounted, setMounted] = useState(false);
+	const { theme } = useTheme();
+
+	useEffect(() => setMounted(true), []);
 
 	// Creates a new editor instance
 	const editor: BlockNoteEditor = useCreateBlockNote({
 		initialContent: document.content,
 	});
+
+	if (!mounted) return null;
 
 	return (
 		<div className={className}>
@@ -39,7 +48,7 @@ export default function Editor({
 				<BlockNoteView
 					editor={editor}
 					editable={editable}
-					theme={darkMode ? "dark" : "light"}
+					theme={theme}
 					onChange={() =>
 						onChange(JSON.stringify(editor.document, null, 2))
 					}

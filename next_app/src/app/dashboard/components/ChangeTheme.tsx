@@ -1,15 +1,15 @@
-import { useDarkMode } from "@/contexts/DarkModeContext";
+import { useTheme } from "next-themes";
 
 export default function ChangeTheme() {
-	const { darkMode, setDarkMode } = useDarkMode();
+	const { theme, setTheme } = useTheme();
 
 	return (
 		<div className="bg-neutral-100 dark:bg-neutral-900">
 			<button
 				className="w-16 h-16 text-xl rounded-full border-none bg-neutral-900 dark:bg-neutral-100"
-				onClick={() => setDarkMode((prev) => !prev)}
+				onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
 			>
-				{darkMode ? "🌞" : "🌙"}
+				{theme === "dark" ? "🌞" : "🌜"}
 			</button>
 		</div>
 	);

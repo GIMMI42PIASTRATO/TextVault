@@ -40,7 +40,7 @@ export default function DropDown({ id }: DropDownProps) {
 				<DropdownMenuLabel>Actions</DropdownMenuLabel>
 				<DropdownMenuSeparator className="dark:bg-[--dash-dark-accent1]" />
 				<DropdownMenuGroup>
-					<DropdownMenuItem className="dark:hover:bg-[--dash-dark-selected-hover]">
+					{/* <DropdownMenuItem className="dark:hover:bg-[--dash-dark-selected-hover]">
 						<FolderInput className="mr-2 h-4 w-4" />
 						<span>Move to folder</span>
 					</DropdownMenuItem>
@@ -48,7 +48,7 @@ export default function DropDown({ id }: DropDownProps) {
 						<Layers2 className="mr-2 h-4 w-4" />
 						<span>Duaplicate</span>
 					</DropdownMenuItem>
-					<DropdownMenuSeparator className="dark:bg-[--dash-dark-accent1]" />
+					<DropdownMenuSeparator className="dark:bg-[--dash-dark-accent1]" /> */}
 					<DropdownMenuItem
 						className="text-destructive duration-200 focus:bg-destructive focus:text-destructive-foreground"
 						onClick={() => deleteDocument(id)}

@@ -40,11 +40,11 @@ export default function UserDropDown({ children, user }: UserDropDownProps) {
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator className="dark:bg-[--dash-dark-accent1]" />
 				<DropdownMenuGroup>
-					<ModeToggle />
+					{/* <ModeToggle />
 					<DropdownMenuItem className="dark:hover:bg-[--dash-dark-selected-hover]">
 						<Cog className="mr-2 h-4 w-4" />
 						<span>Settings</span>
-					</DropdownMenuItem>
+					</DropdownMenuItem> */}
 					<DropdownMenuItem className="dark:hover:bg-[--dash-dark-selected-hover]">
 						<LogOut className="mr-2 h-4 w-4" />
 						<span>Logout</span>

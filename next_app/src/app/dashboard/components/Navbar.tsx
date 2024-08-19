@@ -10,11 +10,11 @@ const navLinks = [
 		href: "/dashboard",
 		text: "Documents",
 	},
-	{
-		icon: <Star size={20} />,
-		href: "/favorites",
-		text: "Favorites",
-	},
+	// {
+	// 	icon: <Star size={20} />,
+	// 	href: "/favorites",
+	// 	text: "Favorites",
+	// },
 ];
 
 export default function Navbar() {

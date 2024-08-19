@@ -41,8 +41,8 @@ export function DocsProvider({ children }: DocsProviderProps) {
 				title: "Untitled",
 				content: [
 					{
-						type: "heading",
-						content: "Untitled",
+						type: "paragraph",
+						content: "",
 					},
 				],
 				folder: "root",

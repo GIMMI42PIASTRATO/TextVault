@@ -20,12 +20,21 @@ import {
 
 import { Palette, Sun, Moon, Monitor, Cog, LogOut } from "lucide-react";
 
+import { createBrowserClient } from "@/lib/pocketbase";
+
+import { useTheme } from "next-themes";
+
 type UserDropDownProps = {
 	children: React.ReactNode;
 	user: UsersResponse | null;
 };
 
 export default function UserDropDown({ children, user }: UserDropDownProps) {
+	const handleLogout = () => {
+		createBrowserClient().authStore.clear();
+		window.location.href = "/";
+	};
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
@@ -40,12 +49,15 @@ export default function UserDropDown({ children, user }: UserDropDownProps) {
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator className="dark:bg-[--dash-dark-accent1]" />
 				<DropdownMenuGroup>
-					{/* <ModeToggle />
-					<DropdownMenuItem className="dark:hover:bg-[--dash-dark-selected-hover]">
+					<ModeToggle />
+					{/* <DropdownMenuItem className="dark:hover:bg-[--dash-dark-selected-hover]">
 						<Cog className="mr-2 h-4 w-4" />
 						<span>Settings</span>
 					</DropdownMenuItem> */}
-					<DropdownMenuItem className="dark:hover:bg-[--dash-dark-selected-hover]">
+					<DropdownMenuItem
+						className="dark:hover:bg-[--dash-dark-selected-hover]"
+						onClick={handleLogout}
+					>
 						<LogOut className="mr-2 h-4 w-4" />
 						<span>Logout</span>
 					</DropdownMenuItem>
@@ -57,6 +69,7 @@ export default function UserDropDown({ children, user }: UserDropDownProps) {
 
 export function ModeToggle() {
 	const [position, setPosition] = useState<string>("system");
+	const { setTheme } = useTheme();
 
 	return (
 		<DropdownMenuSub>
@@ -65,33 +78,25 @@ export function ModeToggle() {
 				<span>Theme</span>
 			</DropdownMenuSubTrigger>
 			<DropdownMenuPortal>
-				<DropdownMenuSubContent className="w-[180px] dark:bg-[--dash-dark-bg1] dark:border-[--dash-dark-accent1]">
-					<DropdownMenuRadioGroup
-						value={position}
-						onValueChange={setPosition}
+				<DropdownMenuSubContent className="dark:bg-[--dash-dark-bg1] dark:border-[--dash-dark-accent1]">
+					<DropdownMenuItem
+						className="dark:hover:bg-[--dash-dark-selected-hover]"
+						onClick={() => setTheme("light")}
 					>
-						<DropdownMenuRadioItem
-							value="light"
-							className="dark:hover:bg-[--dash-dark-selected-hover]"
-						>
-							<Sun className="mr-2 h-4 w-4" />
-							<span>Light</span>
-						</DropdownMenuRadioItem>
-						<DropdownMenuRadioItem
-							value="dark"
-							className="dark:hover:bg-[--dash-dark-selected-hover]"
-						>
-							<Moon className="mr-2 h-4 w-4" />
-							<span>Dark</span>
-						</DropdownMenuRadioItem>
-						<DropdownMenuRadioItem
-							value="system"
-							className="dark:hover:bg-[--dash-dark-selected-hover]"
-						>
-							<Monitor className="mr-2 h-4 w-4" />
-							<span>System</span>
-						</DropdownMenuRadioItem>
-					</DropdownMenuRadioGroup>
+						Light
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className="dark:hover:bg-[--dash-dark-selected-hover]"
+						onClick={() => setTheme("dark")}
+					>
+						Dark
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className="dark:hover:bg-[--dash-dark-selected-hover]"
+						onClick={() => setTheme("system")}
+					>
+						System
+					</DropdownMenuItem>
 				</DropdownMenuSubContent>
 			</DropdownMenuPortal>
 		</DropdownMenuSub>

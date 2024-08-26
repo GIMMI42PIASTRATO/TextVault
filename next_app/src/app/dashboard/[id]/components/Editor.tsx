@@ -27,8 +27,34 @@ export default function Editor({
 	// const { darkMode } = useDarkMode();
 	const [mounted, setMounted] = useState(false);
 	const { theme } = useTheme();
+	const [systemTheme, setSystemTheme] = useState<"light" | "dark">("light");
 
-	useEffect(() => setMounted(true), []);
+	useEffect(() => {
+		setMounted(true);
+
+		// Check system theme and update the state
+		const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+		setSystemTheme(mediaQuery.matches ? "dark" : "light");
+
+		// Listen for system theme changes
+		const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+			setSystemTheme(e.matches ? "dark" : "light");
+		};
+
+		mediaQuery.addEventListener("change", handleSystemThemeChange);
+
+		// Cleanup listener
+		return () =>
+			mediaQuery.removeEventListener("change", handleSystemThemeChange);
+	}, []);
+
+	const getEditorTheme = (theme: string | undefined): "light" | "dark" => {
+		if (theme === "system") {
+			return systemTheme;
+		}
+
+		return theme === "dark" ? "dark" : "light";
+	};
 
 	// Creates a new editor instance
 	const editor: BlockNoteEditor = useCreateBlockNote({
@@ -48,7 +74,7 @@ export default function Editor({
 				<BlockNoteView
 					editor={editor}
 					editable={editable}
-					theme={theme}
+					theme={getEditorTheme(theme)}
 					onChange={() =>
 						onChange(JSON.stringify(editor.document, null, 2))
 					}

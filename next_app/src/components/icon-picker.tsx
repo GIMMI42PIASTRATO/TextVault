@@ -17,12 +17,20 @@ type IconPickerProps = {
 export default function IconPicker({ children, onChange }: IconPickerProps) {
 	const { theme } = useTheme();
 
+	const getEmojiPickerTheme = (theme: string | undefined): Theme => {
+		if (theme === "system") {
+			return Theme.AUTO;
+		}
+
+		return theme === "dark" ? Theme.DARK : Theme.LIGHT;
+	};
+
 	return (
 		<Popover>
 			<PopoverTrigger>{children}</PopoverTrigger>
 			<PopoverContent className="p-0 w-full border-none shadow-none">
 				<EmojiPicker
-					theme={theme as Theme}
+					theme={getEmojiPickerTheme(theme)}
 					onEmojiClick={(data) => onChange(data.emoji)}
 				/>
 			</PopoverContent>

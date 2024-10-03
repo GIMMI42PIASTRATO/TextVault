@@ -4,11 +4,13 @@ import { useCreateBlockNote } from "@blocknote/react";
 import { BlockNoteView } from "@blocknote/mantine";
 import "@blocknote/mantine/style.css";
 import { BlockNoteEditor } from "@blocknote/core";
-// import { useDarkMode } from "@/contexts/DarkModeContext";
-import { useTheme } from "next-themes";
+import { schema } from "@/editor/schema";
+
 import { DocumentModel } from "@/types/pocketbase-types";
+
 import Toolbar from "./Toolbar";
 
+import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 
 type EditorProps = {
@@ -58,6 +60,7 @@ export default function Editor({
 
 	// Creates a new editor instance
 	const editor: BlockNoteEditor = useCreateBlockNote({
+		schema,
 		initialContent: document.content,
 	});
 
@@ -79,7 +82,21 @@ export default function Editor({
 						onChange(JSON.stringify(editor.document, null, 2))
 					}
 					data-theming-css-variables
-				/>
+				>
+					<SuggestionMenuController
+						triggerCharacter={"/"}
+						getItems={async (query) =>
+							// Gets all default slash menu items and `insertAlert` item.
+							filterSuggestionItems(
+								[
+									...getDefaultReactSlashMenuItems(editor),
+									insertAlert(editor),
+								],
+								query
+							)
+						}
+					/>
+				</BlockNoteView>
 			</div>
 		</div>
 	);
